@@ -5,7 +5,9 @@ const API = (() => {
   const base = '';
 
   async function req(url, opts = {}) {
-    const res = await fetch(base + url, {
+    const sep = url.includes('?') ? '&' : '?';
+    const cacheUrl = !opts.method || opts.method === 'GET' ? url + sep + '_t=' + Date.now() : url;
+    const res = await fetch(base + cacheUrl, {
       headers: { 'Content-Type': 'application/json', ...opts.headers },
       ...opts,
     });
