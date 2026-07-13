@@ -504,8 +504,11 @@
     function loadData() {
       try {
         products = JSON.parse(localStorage.getItem('gor_products')) || [];
+        if (products.length && (products[0].images || products[0].image)) { products = []; localStorage.removeItem('gor_products'); }
+      } catch(e) { products = []; localStorage.removeItem('gor_products'); }
+      try {
         orders = JSON.parse(localStorage.getItem('gor_orders')) || [];
-      } catch(e) { products = []; orders = []; }
+      } catch(e) { orders = []; }
     }
 
     function saveProducts() { localStorage.setItem('gor_products', JSON.stringify(products)); }
