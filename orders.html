@@ -182,9 +182,13 @@
 
   <div class="toast-container" id="toastContainer"></div>
 
+  <script src="api.js"></script>
   <script>
     let orders = [];
-    try { orders = JSON.parse(localStorage.getItem('gor_orders')) || []; } catch(e) { orders = []; }
+
+    (async function initOrders() {
+      try { orders = await API.getOrders(); } catch {}
+    })();
 
     function lookupOrders() {
       const email = document.getElementById('orderEmail').value.trim().toLowerCase();
@@ -285,6 +289,11 @@
     // ─── AUTO-SEARCH FROM URL ───
     const params = new URLSearchParams(window.location.search);
     if (params.get('email')) { document.getElementById('orderEmail').value = params.get('email'); lookupOrders(); }
+
+    // Reload orders when page becomes visible (for returning from checkout, etc.)
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) API.getOrders().then(o => { orders = o; });
+    });
   </script>
 </body>
 </html>

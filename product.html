@@ -291,6 +291,7 @@
 
   <div class="toast-container" id="toastContainer"></div>
 
+  <script src="api.js"></script>
   <script>
     const defaultProducts = [
       { id: 1, name: 'Rosetta Rose', price: 1200, category: 'rose', desc: 'A romantic bloom with layered coral-peach petals.', colors: ['#D4897A','#C47A6A','#E0A090'] },
@@ -304,11 +305,17 @@
     ];
 
     let products = []; let cart = []; let orders = [];
-    try { products = JSON.parse(localStorage.getItem('gor_products')) || defaultProducts; } catch(e) { products = defaultProducts; }
     try { cart = JSON.parse(localStorage.getItem('gor_cart')) || []; if (cart.length && (cart[0].images || cart[0].image || cart[0].colors)) { cart = []; localStorage.setItem('gor_cart', '[]'); } } catch(e) { cart = []; }
-    try { orders = JSON.parse(localStorage.getItem('gor_orders')) || []; } catch(e) { orders = []; }
     function saveCart() { localStorage.setItem('gor_cart', JSON.stringify(cart)); }
-    function saveOrders() { localStorage.setItem('gor_orders', JSON.stringify(orders)); }
+    function saveOrders() { API.saveOrders(orders); }
+
+    (async function initProduct() {
+      try { const p = await API.getProducts(); if (p.length) products = p; } catch {}
+      if (!products.length) products = defaultProducts;
+      try { orders = await API.getOrders(); } catch {}
+      renderProduct();
+      updateCartUI();
+    })();
 
     // ─── RENDER PRODUCT DETAIL ───
     function renderProduct() {
@@ -561,9 +568,7 @@
       });
     });
 
-    // ─── INIT ───
-    renderProduct();
-    updateCartUI();
+
   </script>
 </body>
 </html>

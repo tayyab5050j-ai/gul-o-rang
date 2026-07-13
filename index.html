@@ -1539,6 +1539,7 @@
 
   <div class="toast-container" id="toastContainer"></div>
 
+  <script src="api.js"></script>
   <script>
     // ─── PRODUCT DATA ───
     const defaultProducts = [
@@ -1556,24 +1557,27 @@
     let cart = [];
     let orders = [];
 
-    try {
-      const stored = localStorage.getItem('gor_products');
-      products = stored ? JSON.parse(stored) : defaultProducts;
-    } catch(e) { products = defaultProducts; }
-
-    try {
-      const stored = localStorage.getItem('gor_cart');
-      cart = stored ? JSON.parse(stored) : [];
-      if (cart.length && (cart[0].images || cart[0].image || cart[0].colors)) { cart = []; saveCart(); }
-    } catch(e) { cart = []; }
-
-    try {
-      const stored = localStorage.getItem('gor_orders');
-      orders = stored ? JSON.parse(stored) : [];
-    } catch(e) { orders = []; }
+    (async function loadData() {
+      try {
+        const p = await API.getProducts();
+        if (p.length) products = p;
+      } catch {}
+      if (!products.length) products = defaultProducts;
+      try {
+        const stored = localStorage.getItem('gor_cart');
+        cart = stored ? JSON.parse(stored) : [];
+        if (cart.length && (cart[0].images || cart[0].image || cart[0].colors)) { cart = []; localStorage.setItem('gor_cart', '[]'); }
+      } catch(e) { cart = []; }
+      try {
+        orders = await API.getOrders();
+      } catch {}
+      if (typeof renderProducts === 'function') renderProducts();
+      if (typeof updateCartUI === 'function') updateCartUI();
+      document.querySelectorAll('.products-header').forEach(el => { if (typeof revealObserver !== 'undefined' && revealObserver) revealObserver.observe(el); });
+    })();
 
     function saveCart() { localStorage.setItem('gor_cart', JSON.stringify(cart)); }
-    function saveOrders() { localStorage.setItem('gor_orders', JSON.stringify(orders)); }
+    function saveOrders() { API.saveOrders(orders); }
 
     // ─── RENDER PRODUCTS ───
     function renderProducts(category = 'all') {
@@ -1925,10 +1929,6 @@
       if (e.target === this) this.classList.remove('open');
     });
 
-    // ─── INIT ───
-    updateCartUI();
-    renderProducts();
-    document.querySelectorAll('.products-header').forEach(el => revealObserver.observe(el));
   </script>
 </body>
 </html>

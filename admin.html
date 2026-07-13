@@ -496,34 +496,25 @@
     </div>
   </div>
 
+  <script src="api.js"></script>
   <script>
     const PASS = 'admin123';
     let products = [];
     let orders = [];
 
-    function loadData() {
+    async function loadData() {
       try {
-        const raw = localStorage.getItem('gor_products');
-        products = raw ? JSON.parse(raw) : [];
-        if (products.length && (products[0].images || products[0].image)) { throw 'corrupted'; }
-        // Check if total size exceeds 3MB
-        if (raw && raw.length > 3000000) { throw 'too large'; }
-      } catch(e) { products = []; localStorage.removeItem('gor_products'); }
+        const p = await API.getProducts();
+        if (p && p.length) products = p;
+      } catch {}
       try {
-        orders = JSON.parse(localStorage.getItem('gor_orders')) || [];
-      } catch(e) { orders = []; }
+        const o = await API.getOrders();
+        if (o && o.length) orders = o;
+      } catch {}
     }
 
-    function saveProducts() {
-      // Strip images to fit localStorage limit (backend version stores images properly)
-      const clean = products.map(p => {
-        const { images, image, ...rest } = p;
-        return rest;
-      });
-      localStorage.setItem('gor_products', JSON.stringify(clean));
-      // Restore images in memory for current session
-    }
-    function saveOrders() { localStorage.setItem('gor_orders', JSON.stringify(orders)); }
+    function saveProducts() { API.saveProducts(products); }
+    function saveOrders() { API.saveOrders(orders); }
 
     // ─── LOGIN ───
     function doLogin() {
@@ -783,8 +774,8 @@
     }
 
     // ─── INIT ───
-    function initAdmin() {
-      loadData();
+    async function initAdmin() {
+      await loadData();
       renderDashboard();
       renderProducts();
       renderOrders();
