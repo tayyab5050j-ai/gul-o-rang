@@ -21,8 +21,6 @@ function ghHeaders() {
 }
 
 export async function readDB() {
-  if (dataCache) return JSON.parse(JSON.stringify(dataCache));
-
   const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}?ref=${BRANCH}`;
   const res = await fetch(url, { headers: ghHeaders() });
 
