@@ -16,11 +16,7 @@ export default async function handler(req, res) {
         db.products = DEFAULT_PRODUCTS;
         await writeDB(db);
       }
-      const list = db.products.map(p => {
-        const { images, ...rest } = p;
-        return { ...rest, hasImages: !!(images && images.length), imageCount: images ? images.length : 0 };
-      });
-      return res.json(list);
+      return res.json(db.products);
     }
 
     if (req.method === 'POST') {

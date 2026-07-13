@@ -1620,12 +1620,9 @@
     }
 
     // ─── IMAGE GALLERY ───
-    async function openGallery(productId) {
-      let p = products.find(x => x.id === productId);
+    function openGallery(productId) {
+      const p = products.find(x => x.id === productId);
       if (!p) return;
-      if (!p.images || !p.images.length) {
-        try { const full = await API.getProduct(productId); if (full && full.images) p = full; } catch {}
-      }
       const imgs = p.images || (p.image ? [p.image] : []);
       if (!imgs.length) return;
       document.getElementById('galleryTitle').textContent = p.name;
