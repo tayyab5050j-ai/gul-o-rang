@@ -312,6 +312,11 @@
     (async function initProduct() {
       try { const p = await API.getProducts(); if (p.length) products = p; } catch {}
       if (!products.length) products = defaultProducts;
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get('id'));
+      if (id) {
+        try { const full = await API.getProduct(id); if (full && full.images) { const idx = products.findIndex(x => x.id === id); if (idx >= 0) products[idx] = full; } } catch {}
+      }
       try { orders = await API.getOrders(); } catch {}
       renderProduct();
       updateCartUI();

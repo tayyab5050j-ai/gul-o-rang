@@ -20,6 +20,9 @@ const API = (() => {
     async getProducts() {
       try { return await req('/api/products'); } catch { return []; }
     },
+    async getProduct(id) {
+      return req('/api/products/' + id);
+    },
     async saveProducts(products) {
       try { await req('/api/products/batch', { method: 'PUT', body: JSON.stringify(products) }); } catch (e) { console.error('saveProducts failed:', e); }
     },

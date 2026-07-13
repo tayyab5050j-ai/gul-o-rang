@@ -1,4 +1,4 @@
-import { readDB, writeDB, DEFAULT_PRODUCTS } from './_db.js';
+import { readDB, writeDB, DEFAULT_PRODUCTS } from '../_db.js';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -16,7 +16,11 @@ export default async function handler(req, res) {
         db.products = DEFAULT_PRODUCTS;
         await writeDB(db);
       }
-      return res.json(db.products);
+      const list = db.products.map(p => {
+        const { images, ...rest } = p;
+        return { ...rest, hasImages: !!(images && images.length), imageCount: images ? images.length : 0 };
+      });
+      return res.json(list);
     }
 
     if (req.method === 'POST') {
