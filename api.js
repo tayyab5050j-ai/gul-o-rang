@@ -43,7 +43,7 @@ const API = (() => {
       return req('/api/orders', { method: 'POST', body: JSON.stringify(order) });
     },
     async updateOrderStatus(id, status) {
-      return req('/api/orders/' + id + '/status', { method: 'PUT', body: JSON.stringify({ status }) });
+      return req('/api/orders/' + id, { method: 'PUT', body: JSON.stringify({ status }) });
     },
 
     // Contact
