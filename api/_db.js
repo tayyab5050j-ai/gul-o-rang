@@ -7,7 +7,7 @@ let tokenCache = '';
 let shaCache = null;
 let dataCache = null;
 
-function getToken() {
+export function getToken() {
   if (tokenCache) return tokenCache;
   tokenCache = process.env.GH_TOKEN || '';
   return tokenCache;
