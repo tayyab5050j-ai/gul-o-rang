@@ -503,15 +503,26 @@
 
     function loadData() {
       try {
-        products = JSON.parse(localStorage.getItem('gor_products')) || [];
-        if (products.length && (products[0].images || products[0].image)) { products = []; localStorage.removeItem('gor_products'); }
+        const raw = localStorage.getItem('gor_products');
+        products = raw ? JSON.parse(raw) : [];
+        if (products.length && (products[0].images || products[0].image)) { throw 'corrupted'; }
+        // Check if total size exceeds 3MB
+        if (raw && raw.length > 3000000) { throw 'too large'; }
       } catch(e) { products = []; localStorage.removeItem('gor_products'); }
       try {
         orders = JSON.parse(localStorage.getItem('gor_orders')) || [];
       } catch(e) { orders = []; }
     }
 
-    function saveProducts() { localStorage.setItem('gor_products', JSON.stringify(products)); }
+    function saveProducts() {
+      // Strip images to fit localStorage limit (backend version stores images properly)
+      const clean = products.map(p => {
+        const { images, image, ...rest } = p;
+        return rest;
+      });
+      localStorage.setItem('gor_products', JSON.stringify(clean));
+      // Restore images in memory for current session
+    }
     function saveOrders() { localStorage.setItem('gor_orders', JSON.stringify(orders)); }
 
     // ─── LOGIN ───
