@@ -21,10 +21,10 @@ const API = (() => {
       try { return await req('/api/products'); } catch { return []; }
     },
     async saveProducts(products) {
-      try { await req('/api/products/batch', { method: 'PUT', body: JSON.stringify(products) }); } catch {}
+      try { await req('/api/products/batch', { method: 'PUT', body: JSON.stringify(products) }); } catch (e) { console.error('saveProducts failed:', e); }
     },
     async saveOrders(orders) {
-      try { await req('/api/orders/batch', { method: 'PUT', body: JSON.stringify(orders) }); } catch {}
+      try { await req('/api/orders/batch', { method: 'PUT', body: JSON.stringify(orders) }); } catch (e) { console.error('saveOrders failed:', e); }
     },
     async addProduct(p) {
       return req('/api/products', { method: 'POST', body: JSON.stringify(p) });
