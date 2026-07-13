@@ -18,6 +18,27 @@
       ]
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "id": 1783956961196,
+      "date": "2026-07-13T15:36:01.196Z",
+      "items": [
+        {
+          "id": 1783951570273,
+          "name": "test",
+          "price": 2500,
+          "qty": 1
+        }
+      ],
+      "total": 2500,
+      "customer": {
+        "name": "test",
+        "email": "test@test",
+        "phone": "333333333",
+        "address": "hhhhhh"
+      },
+      "status": "pending"
+    }
+  ],
   "messages": []
 }
