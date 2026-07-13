@@ -3,32 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Twist & Bloom — Handcrafted Pipe Cleaner Flowers</title>
+  <title>gul-o-rang — Handcrafted Pipe Cleaner Flowers</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-primary: #1A1628;
-      --bg-secondary: #252140;
-      --bg-card: rgba(255, 255, 255, 0.04);
-      --text-primary: #F0E6D0;
-      --text-secondary: #A89F91;
-      --text-muted: #6B6459;
-      --accent-rose: #FF6B9D;
-      --accent-gold: #FFB84D;
-      --accent-mint: #6CD4A0;
-      --accent-amethyst: #B388FF;
-      --accent-coral: #FF8A65;
-      --font-display: 'Fraunces', Georgia, serif;
-      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --bg: #F8F2E9;
+      --bg-alt: #FDF7F1;
+      --card-bg: #FFFFFF;
+      --accent: #D4897A;
+      --accent-dark: #BD7A6C;
+      --accent-light: #EED0C8;
+      --accent-teal: #4A8B7A;
+      --accent-gold: #D4A373;
+      --accent-rose: #D4A0A0;
+      --text: #2C2420;
+      --text-muted: #8B7D6B;
+      --text-light: #B5A797;
+      --border: #E8DDD2;
+      --shadow: rgba(180, 140, 110, 0.1);
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --radius: 16px;
       --radius-sm: 8px;
-      --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      --bounce: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      --tilt-intensity: 12deg;
-      --depth-intensity: 20px;
-      --card-tilt: 8deg;
+      --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      --bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     *,
@@ -45,16 +45,26 @@
 
     body {
       font-family: var(--font-body);
-      background: var(--bg-primary);
-      color: var(--text-primary);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(180, 150, 120, 0.06) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
     ::selection {
-      background: var(--accent-rose);
-      color: var(--bg-primary);
+      background: var(--accent);
+      color: #fff;
     }
 
     a {
@@ -70,7 +80,7 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 20px;
     }
 
     /* ─── SCROLL PROGRESS ─── */
@@ -79,7 +89,7 @@
       top: 0;
       left: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--accent-rose), var(--accent-gold));
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
       z-index: 200;
       width: 0%;
       transition: width 0.1s linear;
@@ -92,43 +102,46 @@
       left: 0;
       right: 0;
       z-index: 100;
-      padding: 20px 32px;
+      padding: 18px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background var(--transition), padding var(--transition);
+      transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
     }
 
     nav.scrolled {
-      background: rgba(26, 22, 40, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 14px 32px;
+      background: rgba(252, 245, 235, 0.93);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 12px 28px;
+      box-shadow: 0 1px 0 var(--border);
     }
 
     .logo {
       font-family: var(--font-display);
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
       letter-spacing: -0.02em;
+      color: var(--text);
     }
 
     .logo span {
-      color: var(--accent-rose);
+      color: var(--accent);
     }
 
     .nav-links {
       display: flex;
-      gap: 32px;
+      gap: 28px;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
       position: relative;
       padding-bottom: 4px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
       transition: color var(--transition);
     }
 
@@ -138,17 +151,48 @@
       bottom: 0;
       left: 0;
       width: 0;
-      height: 2px;
-      background: var(--accent-rose);
+      height: 1.5px;
+      background: var(--accent);
       transition: width var(--transition);
     }
 
     .nav-links a:hover {
-      color: var(--text-primary);
+      color: var(--text);
     }
 
     .nav-links a:hover::after {
       width: 100%;
+    }
+
+    .cart-btn {
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      padding: 4px;
+      transition: color var(--transition);
+    }
+
+    .cart-btn:hover {
+      color: var(--accent);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 600;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* ─── HERO ─── */
@@ -160,28 +204,23 @@
       position: relative;
       overflow: hidden;
       padding: 120px 24px 80px;
+      background: linear-gradient(165deg, #F8F2E9 0%, #FDF7F1 35%, #FAF5ED 70%, #F8F2E9 100%);
     }
 
     #hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(255, 107, 157, 0.08), transparent 70%),
-                  radial-gradient(ellipse 60% 50% at 80% 80%, rgba(179, 136, 255, 0.06), transparent 60%);
-      animation: ambientGlow 8s ease-in-out infinite alternate;
+      background: radial-gradient(ellipse 80% 50% at 15% 25%, rgba(212, 137, 122, 0.06), transparent 65%),
+                  radial-gradient(ellipse 70% 60% at 85% 75%, rgba(74, 139, 122, 0.05), transparent 60%),
+                  radial-gradient(ellipse 50% 40% at 50% 50%, rgba(212, 163, 115, 0.04), transparent 50%);
       pointer-events: none;
-    }
-
-    @keyframes ambientGlow {
-      0% { opacity: 0.6; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.05); }
-      100% { opacity: 0.6; transform: scale(1); }
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 50px;
       align-items: center;
       width: 100%;
       max-width: 1200px;
@@ -191,44 +230,25 @@
 
     .hero-text {
       opacity: 0;
-      animation: heroEntrance 1.2s ease 0.3s forwards;
+      animation: fadeUp 1s ease 0.3s forwards;
     }
 
-    @keyframes heroEntrance {
-      0% { opacity: 0; transform: translateY(40px); }
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px); }
       100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── STAGGERED TEXT ─── */
-    .stagger-text {
-      display: inline-block;
-      overflow: hidden;
-      vertical-align: bottom;
-    }
-
-    .stagger-text span {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(60px) rotateX(-40deg);
-      animation: staggerReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    @keyframes staggerReveal {
-      0% { opacity: 0; transform: translateY(60px) rotateX(-40deg); }
-      100% { opacity: 1; transform: translateY(0) rotateX(0); }
     }
 
     .hero-badge {
       display: inline-block;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--accent-rose);
-      border: 1px solid rgba(255, 107, 157, 0.25);
+      color: var(--accent);
+      border: 1px solid rgba(212, 137, 122, 0.25);
       padding: 6px 16px;
       border-radius: 100px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       opacity: 0;
       animation: fadeIn 0.6s ease 0.6s forwards;
     }
@@ -239,45 +259,45 @@
 
     .hero-text h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
       font-weight: 700;
-      line-height: 1.1;
+      line-height: 1.08;
       letter-spacing: -0.03em;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .hero-text h1 span {
-      color: var(--accent-rose);
+      color: var(--accent);
+      font-style: italic;
     }
 
     .hero-text p {
-      font-size: 1.15rem;
-      color: var(--text-secondary);
-      max-width: 480px;
-      margin-bottom: 36px;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin-bottom: 32px;
       line-height: 1.7;
       opacity: 0;
-      animation: fadeUp 0.8s ease 1.2s forwards;
-    }
-
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
+      animation: fadeUp 0.8s ease 1s forwards;
     }
 
     .hero-buttons {
       opacity: 0;
-      animation: fadeUp 0.8s ease 1.5s forwards;
+      animation: fadeUp 0.8s ease 1.3s forwards;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 32px;
+      padding: 13px 30px;
       border-radius: 100px;
       font-family: var(--font-body);
-      font-size: 0.95rem;
-      font-weight: 600;
+      font-size: 0.9rem;
+      font-weight: 500;
       border: none;
       cursor: pointer;
       position: relative;
@@ -290,27 +310,36 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent-rose), #E85D8A);
+      background: var(--accent);
       color: #fff;
-      box-shadow: 0 4px 24px rgba(255, 107, 157, 0.3);
+      box-shadow: 0 4px 20px rgba(212, 137, 122, 0.3);
     }
 
     .btn-primary:hover {
-      box-shadow: 0 8px 32px rgba(255, 107, 157, 0.45);
+      box-shadow: 0 8px 28px rgba(212, 137, 122, 0.4);
     }
 
     .btn-secondary {
       background: transparent;
-      color: var(--text-primary);
-      border: 1px solid rgba(240, 230, 208, 0.2);
-      margin-left: 12px;
+      color: var(--text);
+      border: 1px solid var(--border);
     }
 
     .btn-secondary:hover {
-      border-color: rgba(240, 230, 208, 0.4);
+      border-color: var(--accent);
     }
 
-    /* ─── BUTTON RIPPLE ─── */
+    .btn-outline {
+      background: transparent;
+      color: var(--accent-dark);
+      border: 1.5px solid var(--accent);
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
     .ripple {
       position: absolute;
       border-radius: 50%;
@@ -325,58 +354,40 @@
     }
 
     /* ─── HERO FLOWER ─── */
-    .tilt-scene {
-      perspective: 1200px;
-    }
-
-    .tilt-3d {
-      transition: transform 0.08s cubic-bezier(0.22, 1, 0.36, 1);
-      transform-style: preserve-3d;
-    }
-
     .hero-visual {
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       opacity: 0;
-      animation: heroEntrance 1.2s ease 0.6s forwards;
+      animation: fadeUp 1s ease 0.5s forwards;
     }
 
     .flower-container {
       position: relative;
-      width: 320px;
-      height: 320px;
+      width: 300px;
+      height: 300px;
       animation: float 6s ease-in-out infinite;
     }
 
     .flower-container::after {
       content: '';
       position: absolute;
-      bottom: -20px;
+      bottom: -10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 4px;
-      height: 80px;
-      background: linear-gradient(to bottom, var(--accent-mint), transparent);
+      width: 3px;
+      height: 70px;
+      background: linear-gradient(to bottom, var(--accent-teal), transparent);
       border-radius: 2px;
-      opacity: 0.5;
+      opacity: 0.4;
     }
 
     .flower {
       position: relative;
       width: 100%;
       height: 100%;
-      animation: rotateSlow 20s linear infinite;
-    }
-
-    .flower.bloom .petal {
-      animation: petalBloom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-
-    @keyframes petalBloom {
-      0% { transform: var(--bloom-start) translateY(-65px) scale(0.2); opacity: 0; }
-      100% { transform: var(--bloom-end) translateY(-65px) scale(1); opacity: 0.85; }
+      animation: rotateSlow 25s linear infinite;
     }
 
     .petal-group {
@@ -389,48 +400,35 @@
 
     .petal {
       position: absolute;
-      width: 70px;
-      height: 130px;
+      width: 65px;
+      height: 120px;
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      filter: blur(0.8px);
       transform-origin: center bottom;
-      opacity: 0.85;
-      transition: transform var(--transition), filter var(--transition);
-    }
-
-    .petal-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: inherit;
-    }
-
-    .hero-visual:hover .petal {
-      filter: blur(0.5px) brightness(1.1);
+      opacity: 0.75;
     }
 
     .petal-outer {
       position: absolute;
-      width: 56px;
-      height: 104px;
+      width: 50px;
+      height: 95px;
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      filter: blur(0.6px);
-      opacity: 0.5;
+      opacity: 0.3;
       transform-origin: center bottom;
-      animation: outerPulse 3s ease-in-out infinite alternate;
+      animation: outerPulse 3.5s ease-in-out infinite alternate;
     }
 
-    .petal-outer:nth-child(1) { transform: rotate(0deg) translateY(-88px); animation-delay: 0s; }
-    .petal-outer:nth-child(2) { transform: rotate(45deg) translateY(-88px); animation-delay: 0.2s; }
-    .petal-outer:nth-child(3) { transform: rotate(90deg) translateY(-88px); animation-delay: 0.4s; }
-    .petal-outer:nth-child(4) { transform: rotate(135deg) translateY(-88px); animation-delay: 0.6s; }
-    .petal-outer:nth-child(5) { transform: rotate(180deg) translateY(-88px); animation-delay: 0.8s; }
-    .petal-outer:nth-child(6) { transform: rotate(225deg) translateY(-88px); animation-delay: 1s; }
-    .petal-outer:nth-child(7) { transform: rotate(270deg) translateY(-88px); animation-delay: 1.2s; }
-    .petal-outer:nth-child(8) { transform: rotate(315deg) translateY(-88px); animation-delay: 1.4s; }
+    .petal-outer:nth-child(1) { transform: rotate(0deg) translateY(-80px); animation-delay: 0s; }
+    .petal-outer:nth-child(2) { transform: rotate(45deg) translateY(-80px); animation-delay: 0.25s; }
+    .petal-outer:nth-child(3) { transform: rotate(90deg) translateY(-80px); animation-delay: 0.5s; }
+    .petal-outer:nth-child(4) { transform: rotate(135deg) translateY(-80px); animation-delay: 0.75s; }
+    .petal-outer:nth-child(5) { transform: rotate(180deg) translateY(-80px); animation-delay: 1s; }
+    .petal-outer:nth-child(6) { transform: rotate(225deg) translateY(-80px); animation-delay: 1.25s; }
+    .petal-outer:nth-child(7) { transform: rotate(270deg) translateY(-80px); animation-delay: 1.5s; }
+    .petal-outer:nth-child(8) { transform: rotate(315deg) translateY(-80px); animation-delay: 1.75s; }
 
     @keyframes outerPulse {
-      0% { transform: var(--outer-rotate) translateY(-88px) scale(1); opacity: 0.4; }
-      100% { transform: var(--outer-rotate) translateY(-88px) scale(1.08); opacity: 0.6; }
+      0% { transform: var(--outer-rotate) translateY(-80px) scale(1); opacity: 0.25; }
+      100% { transform: var(--outer-rotate) translateY(-80px) scale(1.1); opacity: 0.4; }
     }
 
     .flower-center {
@@ -438,28 +436,28 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 48px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: radial-gradient(circle at 40% 40%, var(--accent-gold), #E8A035);
-      box-shadow: 0 0 30px rgba(255, 184, 77, 0.3), inset 0 -4px 8px rgba(0, 0, 0, 0.2);
+      background: radial-gradient(circle at 40% 40%, #E8D5B0, #D4B896);
+      box-shadow: 0 0 24px rgba(212, 137, 122, 0.2), inset 0 -3px 6px rgba(0, 0, 0, 0.06);
       z-index: 2;
       animation: centerGlow 3s ease-in-out infinite alternate;
     }
 
     @keyframes centerGlow {
-      0% { box-shadow: 0 0 20px rgba(255, 184, 77, 0.2); }
-      100% { box-shadow: 0 0 40px rgba(255, 184, 77, 0.5); }
+      0% { box-shadow: 0 0 12px rgba(212, 137, 122, 0.15); }
+      100% { box-shadow: 0 0 28px rgba(212, 137, 122, 0.3); }
     }
 
     .flower-center::after {
       content: '';
       position: absolute;
-      top: 8px;
-      left: 12px;
-      width: 12px;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.25);
+      top: 7px;
+      left: 10px;
+      width: 10px;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.3);
       border-radius: 50%;
       transform: rotate(-30deg);
     }
@@ -470,356 +468,438 @@
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-16px); }
+      50% { transform: translateY(-12px); }
     }
 
-    /* ─── PARTICLES ─── */
-    .particle-field {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      animation: particleRise linear infinite;
-      opacity: 0;
-    }
-
-    @keyframes particleRise {
-      0% {
-        transform: translateY(0) translateX(0) scale(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.6;
-      }
-      90% {
-        opacity: 0.3;
-      }
-      100% {
-        transform: translateY(-110vh) translateX(40px) scale(1);
-        opacity: 0;
-      }
-    }
-
-    /* ─── MOUSE GLOW ─── */
-    .mouse-glow {
-      position: fixed;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 107, 157, 0.06), transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s ease;
-      opacity: 0;
-    }
-
-    .mouse-glow.active {
-      opacity: 1;
-    }
-
-    /* ─── SECTION BASE ─── */
+    /* ─── SECTION ─── */
     section {
-      padding: 100px 24px;
+      padding: 90px 20px;
       position: relative;
     }
 
     .section-label {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--accent-rose);
-      margin-bottom: 12px;
+      color: var(--accent);
+      margin-bottom: 10px;
     }
 
     .section-title {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
       font-weight: 600;
       letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 16px;
+      line-height: 1.15;
+      margin-bottom: 14px;
     }
 
     .section-sub {
-      color: var(--text-secondary);
-      font-size: 1.05rem;
-      max-width: 560px;
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 540px;
       line-height: 1.7;
     }
 
-    /* ─── GALLERY ─── */
-    #gallery {
-      background: var(--bg-secondary);
-    }
-
-    .gallery-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .gallery-header .section-sub {
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      width: 80%;
+      max-width: 600px;
       margin: 0 auto;
     }
 
-    .gallery-header .section-label,
-    .gallery-header .section-title,
-    .gallery-header .section-sub {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    /* ─── PRODUCTS ─── */
+    #products {
+      background: var(--bg-alt);
     }
 
-    .gallery-header.visible .section-label,
-    .gallery-header.visible .section-title,
-    .gallery-header.visible .section-sub {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .gallery-header.visible .section-title { transition-delay: 0.1s; }
-    .gallery-header.visible .section-sub { transition-delay: 0.2s; }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 28px;
-    }
-
-    .flower-card {
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: var(--radius);
-      padding: 36px 28px;
+    .products-header {
       text-align: center;
-      perspective: 800px;
-      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition);
+      margin-bottom: 50px;
+    }
+
+    .products-header .section-sub {
+      margin: 0 auto;
+    }
+
+    .category-filters {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .category-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .category-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px 24px;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
       opacity: 0;
-      transform: translateY(60px) scale(0.95);
+      transform: translateY(30px) scale(0.97);
     }
 
-    .card-inner {
-      transition: transform 0.08s cubic-bezier(0.22, 1, 0.36, 1);
-      transform-style: preserve-3d;
-    }
-
-    .card-inner h3 {
-      transform: translateZ(20px);
-    }
-
-    .card-inner .price {
-      transform: translateZ(15px);
-    }
-
-    .card-inner p {
-      transform: translateZ(10px);
-    }
-
-    .card-inner .card-flower {
-      transform: translateZ(30px);
-    }
-
-    .flower-card.visible {
+    .product-card.visible {
       opacity: 1;
       transform: translateY(0) scale(1);
-      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), box-shadow var(--transition), background var(--transition);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow var(--transition);
     }
 
-    .flower-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 107, 157, 0.05);
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(255, 107, 157, 0.15);
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px var(--shadow);
     }
 
-    .card-flower {
+    .product-flower {
       position: relative;
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 24px;
-      animation: cardSpin 12s linear infinite;
-      transition: transform var(--transition);
-    }
-
-    .flower-card:hover .card-flower {
-      animation-duration: 4s;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      animation: cardSpin 14s linear infinite;
     }
 
     @keyframes cardSpin {
       to { transform: rotate(360deg); }
     }
 
-    .card-petal {
+    .pf-petal {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 36px;
-      height: 56px;
+      width: 30px;
+      height: 46px;
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      filter: blur(0.5px);
       transform-origin: center bottom;
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .flower-card:hover .card-petal {
-      transform: var(--petal-rotate) translateY(-28px) scale(1.2);
-      filter: blur(0.3px) brightness(1.1);
-    }
-
-    .card-center {
+    .pf-center {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 22px;
-      height: 22px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       z-index: 2;
-      box-shadow: 0 0 12px rgba(255, 184, 77, 0.2);
-      animation: centerPulse 2s ease-in-out infinite alternate;
     }
 
-    @keyframes centerPulse {
-      0% { box-shadow: 0 0 8px rgba(255, 184, 77, 0.15); }
-      100% { box-shadow: 0 0 20px rgba(255, 184, 77, 0.35); }
-    }
-
-    .card-flower .card-petal:nth-child(1) { --petal-rotate: rotate(0deg); }
-    .card-flower .card-petal:nth-child(2) { --petal-rotate: rotate(45deg); }
-    .card-flower .card-petal:nth-child(3) { --petal-rotate: rotate(90deg); }
-    .card-flower .card-petal:nth-child(4) { --petal-rotate: rotate(135deg); }
-    .card-flower .card-petal:nth-child(5) { --petal-rotate: rotate(180deg); }
-    .card-flower .card-petal:nth-child(6) { --petal-rotate: rotate(225deg); }
-    .card-flower .card-petal:nth-child(7) { --petal-rotate: rotate(270deg); }
-    .card-flower .card-petal:nth-child(8) { --petal-rotate: rotate(315deg); }
-
-    .flower-card h3 {
+    .product-card h3 {
       font-family: var(--font-display);
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .product-card .price {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--accent);
       margin-bottom: 4px;
     }
 
-    .flower-card .price {
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--accent-gold);
-      margin-bottom: 12px;
+    .product-card .product-desc {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 16px;
     }
 
-    .flower-card p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
+    .product-card .btn {
+      width: 100%;
+      justify-content: center;
+      padding: 11px 20px;
+      font-size: 0.85rem;
     }
 
-    /* ─── STORY ─── */
-    #story {
-      overflow: hidden;
+    .product-card .btn:active {
+      transform: scale(0.97);
     }
 
-    .story-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .story-content {
+    /* ─── CART SIDEBAR ─── */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+      z-index: 150;
       opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
-    .story-content.visible {
+    .cart-overlay.open {
       opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 380px;
+      max-width: 90vw;
+      height: 100vh;
+      background: var(--card-bg);
+      z-index: 160;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -8px 0 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .cart-sidebar.open {
       transform: translateX(0);
     }
 
-    .story-content p {
-      color: var(--text-secondary);
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .cart-close {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 4px;
+      transition: color var(--transition);
+    }
+
+    .cart-close:hover {
+      color: var(--text);
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 24px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-info h4 {
+      font-family: var(--font-display);
       font-size: 1.05rem;
-      line-height: 1.8;
-      margin-bottom: 20px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .cart-item-info .item-price {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .cart-item-qty button {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .cart-item-qty button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .cart-item-qty span {
+      font-size: 0.9rem;
+      font-weight: 500;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 4px;
+      align-self: flex-start;
+      transition: color var(--transition);
+    }
+
+    .cart-item-remove:hover {
+      color: var(--accent-rose);
+    }
+
+    .cart-empty {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 40px 0;
+      font-size: 0.95rem;
+    }
+
+    .cart-footer {
+      padding: 16px 24px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+    }
+
+    .cart-total span:last-child {
+      color: var(--accent);
+    }
+
+    .cart-footer .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      overflow: hidden;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    #about {
+      background: var(--card-bg);
+    }
+
+    .about-header-reveal {
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .about-content {
       opacity: 0;
-      transform: translateY(15px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      animation: slideInLeft 0.8s ease 0.2s forwards;
     }
 
-    .story-content.visible p:nth-child(4) { transition-delay: 0.1s; }
-    .story-content.visible p:nth-child(5) { transition-delay: 0.2s; }
-    .story-content.visible p:nth-child(6) { transition-delay: 0.3s; }
-    .story-content.visible p {
-      opacity: 1;
-      transform: translateY(0);
+    @keyframes slideInLeft {
+      0% { opacity: 0; transform: translateX(-30px); }
+      100% { opacity: 1; transform: translateX(0); }
     }
 
-    .story-visual {
+    .about-content p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-visual {
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transform: translateX(40px) scale(0.9);
-      transition: opacity 0.8s ease 0.2s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+      animation: slideInRight 0.8s ease 0.35s forwards;
     }
 
-    .story-visual.visible {
-      opacity: 1;
-      transform: translateX(0) scale(1);
+    @keyframes slideInRight {
+      0% { opacity: 0; transform: translateX(30px) scale(0.95); }
+      100% { opacity: 1; transform: translateX(0) scale(1); }
     }
 
-    .story-flower-group {
+    .about-flower-group {
       position: relative;
-      width: 300px;
-      height: 300px;
+      width: 280px;
+      height: 280px;
     }
 
-    .story-flower-group .mini-flower {
+    .about-flower-group .mini-flower {
       position: absolute;
       animation: float 5s ease-in-out infinite;
     }
 
-    .story-flower-group .mini-flower:nth-child(1) {
-      top: 10%;
-      left: 10%;
-      animation-delay: 0s;
-    }
-
-    .story-flower-group .mini-flower:nth-child(2) {
-      top: 30%;
-      right: 5%;
-      animation-delay: 1.5s;
-    }
-
-    .story-flower-group .mini-flower:nth-child(3) {
-      bottom: 15%;
-      left: 15%;
-      animation-delay: 3s;
-    }
-
-    .story-flower-group .mini-flower:nth-child(4) {
-      bottom: 5%;
-      right: 20%;
-      animation-delay: 0.7s;
-    }
+    .about-flower-group .mini-flower:nth-child(1) { top: 5%; left: 10%; animation-delay: 0s; }
+    .about-flower-group .mini-flower:nth-child(2) { top: 25%; right: 0; animation-delay: 1.2s; }
+    .about-flower-group .mini-flower:nth-child(3) { bottom: 10%; left: 12%; animation-delay: 2.5s; }
+    .about-flower-group .mini-flower:nth-child(4) { bottom: 0; right: 15%; animation-delay: 0.6s; }
 
     .mini-flower {
       position: relative;
-      width: 80px;
-      height: 80px;
-      animation: miniSpin 15s linear infinite;
+      width: 70px;
+      height: 70px;
+      animation: miniSpin 18s linear infinite;
     }
 
-    .mini-flower:nth-child(2) { animation-duration: 18s; animation-direction: reverse; }
-    .mini-flower:nth-child(3) { animation-duration: 12s; }
-    .mini-flower:nth-child(4) { animation-duration: 20s; animation-direction: reverse; }
+    .mini-flower:nth-child(2) { animation-duration: 20s; animation-direction: reverse; }
+    .mini-flower:nth-child(3) { animation-duration: 14s; }
+    .mini-flower:nth-child(4) { animation-duration: 22s; animation-direction: reverse; }
 
     @keyframes miniSpin {
       to { transform: rotate(360deg); }
@@ -829,139 +909,263 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 22px;
-      height: 36px;
+      width: 20px;
+      height: 32px;
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      filter: blur(0.4px);
       transform-origin: center bottom;
     }
 
-    .mini-flower .mp:nth-child(1) { transform: rotate(0deg) translateY(-20px); }
-    .mini-flower .mp:nth-child(2) { transform: rotate(60deg) translateY(-20px); }
-    .mini-flower .mp:nth-child(3) { transform: rotate(120deg) translateY(-20px); }
-    .mini-flower .mp:nth-child(4) { transform: rotate(180deg) translateY(-20px); }
-    .mini-flower .mp:nth-child(5) { transform: rotate(240deg) translateY(-20px); }
-    .mini-flower .mp:nth-child(6) { transform: rotate(300deg) translateY(-20px); }
+    .mini-flower .mp:nth-child(1) { transform: rotate(0deg) translateY(-18px); }
+    .mini-flower .mp:nth-child(2) { transform: rotate(60deg) translateY(-18px); }
+    .mini-flower .mp:nth-child(3) { transform: rotate(120deg) translateY(-18px); }
+    .mini-flower .mp:nth-child(4) { transform: rotate(180deg) translateY(-18px); }
+    .mini-flower .mp:nth-child(5) { transform: rotate(240deg) translateY(-18px); }
+    .mini-flower .mp:nth-child(6) { transform: rotate(300deg) translateY(-18px); }
 
     .mini-center {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       z-index: 2;
-      box-shadow: 0 0 8px rgba(255, 184, 77, 0.2);
     }
 
     /* ─── CONTACT ─── */
     #contact {
-      background: var(--bg-secondary);
+      background: var(--bg-alt);
       text-align: center;
     }
 
     .contact-form {
-      max-width: 520px;
-      margin: 48px auto 0;
+      max-width: 500px;
+      margin: 40px auto 0;
       text-align: left;
     }
 
     .form-group {
-      margin-bottom: 20px;
-      position: relative;
+      margin-bottom: 18px;
     }
 
     .form-group label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      color: var(--text-secondary);
-      margin-bottom: 8px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
       transition: color var(--transition);
     }
 
     .form-group:focus-within label {
-      color: var(--accent-rose);
+      color: var(--accent);
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
       width: 100%;
-      padding: 14px 18px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
       border-radius: var(--radius-sm);
-      color: var(--text-primary);
+      color: var(--text);
       font-family: var(--font-body);
-      font-size: 0.95rem;
-      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      font-size: 0.9rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
       outline: none;
     }
 
     .form-group input:focus,
     .form-group textarea:focus,
     .form-group select:focus {
-      border-color: var(--accent-rose);
-      box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.15);
-      transform: scale(1.01);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(212, 137, 122, 0.12);
     }
 
     .form-group textarea {
-      min-height: 120px;
+      min-height: 100px;
       resize: vertical;
     }
 
     .form-group select {
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23A89F91' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238B7D6B' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 16px center;
+      background-position: right 14px center;
       cursor: pointer;
-    }
-
-    .form-group select option {
-      background: var(--bg-primary);
-      color: var(--text-primary);
     }
 
     .contact-form .btn {
       width: 100%;
       justify-content: center;
-      margin-top: 8px;
-    }
-
-    .contact-form .btn.loading {
-      pointer-events: none;
-      opacity: 0.85;
+      margin-top: 4px;
     }
 
     /* ─── FOOTER ─── */
     footer {
-      padding: 40px 24px;
+      padding: 36px 20px;
       text-align: center;
       color: var(--text-muted);
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
     }
 
     footer span {
       color: var(--accent-rose);
     }
 
-    /* ─── SECTION DIVIDER ─── */
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 107, 157, 0.15), rgba(255, 184, 77, 0.15), transparent);
-      width: 80%;
-      max-width: 800px;
-      margin: 0 auto;
+    /* ─── TOAST ─── */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    /* ─── PARALLAX UTILITY ─── */
-    .parallax-layer {
-      will-change: transform;
+    .toast {
+      background: var(--text);
+      color: var(--card-bg);
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      animation: toastIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @keyframes toastIn {
+      0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ─── CHECKOUT MODAL ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 170;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      max-width: 480px;
+      width: 100%;
+      transform: scale(0.92) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.open .modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .modal .order-summary {
+      margin: 20px 0;
+      padding: 16px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+    }
+
+    .modal .order-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      padding: 6px 0;
+      color: var(--text-muted);
+    }
+
+    .modal .order-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      padding-top: 10px;
+      margin-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── MOUSE GLOW ─── */
+    .mouse-glow {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 137, 122, 0.05), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mouse-glow.active {
+      opacity: 1;
+    }
+
+    /* ─── 3D TILT ─── */
+    .tilt-scene {
+      perspective: 1000px;
+    }
+
+    .tilt-3d {
+      transition: transform 0.08s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-style: preserve-3d;
+    }
+
+    .card-inner {
+      transition: transform 0.08s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-style: preserve-3d;
+    }
+
+    .card-inner h3 { transform: translateZ(15px); }
+    .card-inner .price { transform: translateZ(10px); }
+    .card-inner .product-desc { transform: translateZ(8px); }
+    .card-inner .btn { transform: translateZ(20px); }
+    .card-inner .product-flower { transform: translateZ(25px); }
+
+    /* ─── ADMIN LINK ─── */
+    .admin-link {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 50;
+      font-size: 0.75rem;
+      color: var(--text-light);
+      opacity: 0.5;
+      transition: opacity var(--transition);
+    }
+
+    .admin-link:hover {
+      opacity: 1;
     }
 
     /* ─── REDUCED MOTION ─── */
@@ -973,10 +1177,7 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-
-      html {
-        scroll-behavior: auto;
-      }
+      html { scroll-behavior: auto; }
     }
 
     /* ─── RESPONSIVE ─── */
@@ -984,11 +1185,11 @@
       .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 40px;
+        gap: 30px;
       }
 
       .hero-text p {
-        margin: 0 auto 36px;
+        margin: 0 auto 28px;
       }
 
       .hero-buttons {
@@ -996,108 +1197,95 @@
       }
 
       .flower-container {
-        width: 240px;
-        height: 240px;
-      }
-
-      .petal {
-        width: 52px;
-        height: 96px;
-      }
-
-      .petal-outer {
-        width: 42px;
-        height: 78px;
-      }
-
-      .story-layout {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .story-content .section-sub {
-        margin: 0 auto;
-      }
-
-      .story-content {
-        order: 2;
-      }
-
-      .story-visual {
-        order: 1;
-      }
-
-      section {
-        padding: 72px 20px;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-        margin: 0 auto;
-      }
-
-      .nav-links {
-        gap: 20px;
-      }
-
-      .nav-links a {
-        font-size: 0.8rem;
-      }
-
-      .story-flower-group {
         width: 220px;
         height: 220px;
       }
-    }
-
-    @media (max-width: 500px) {
-      nav {
-        padding: 16px 20px;
-      }
-
-      .nav-links {
-        gap: 14px;
-      }
-
-      .logo {
-        font-size: 1.2rem;
-      }
-
-      .flower-container {
-        width: 180px;
-        height: 180px;
-      }
 
       .petal {
-        width: 40px;
-        height: 72px;
-        filter: blur(0.5px);
-      }
-
-      .flower-center {
-        width: 36px;
-        height: 36px;
+        width: 48px;
+        height: 88px;
       }
 
       .petal-outer {
-        width: 32px;
-        height: 60px;
+        width: 38px;
+        height: 70px;
       }
 
-      .btn-secondary {
-        margin-left: 0;
-        margin-top: 12px;
+      .flower-center {
+        width: 32px;
+        height: 32px;
+      }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+
+      .about-content { order: 2; }
+      .about-visual { order: 1; }
+
+      section { padding: 64px 16px; }
+
+      .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
+
+      .nav-links a:not(.nav-cart) { display: none; }
+      .nav-links { gap: 12px; }
+    }
+
+    @media (max-width: 500px) {
+      nav { padding: 14px 16px; }
+      .logo { font-size: 1.3rem; }
+
+      .flower-container {
+        width: 170px;
+        height: 170px;
+      }
+
+      .petal {
+        width: 38px;
+        height: 68px;
+      }
+
+      .flower-center {
+        width: 26px;
+        height: 26px;
+      }
+
+      .petal-outer {
+        width: 30px;
+        height: 56px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      .cart-sidebar {
+        width: 100vw;
+        max-width: 100vw;
       }
 
       .hero-buttons {
-        display: flex;
         flex-direction: column;
         align-items: center;
       }
 
-      .gallery-grid {
-        grid-template-columns: 1fr;
+      .about-flower-group {
+        width: 200px;
+        height: 200px;
+      }
+
+      .modal {
+        padding: 28px 20px;
+      }
+
+      #galleryCarousel img {
+        height: 240px !important;
       }
     }
   </style>
@@ -1109,60 +1297,58 @@
 
   <!-- ─── NAV ─── -->
   <nav id="navbar">
-    <a href="#hero" class="logo">Twist &amp; <span>Bloom</span></a>
+    <a href="#hero" class="logo">gul-o-<span>rang</span></a>
     <ul class="nav-links">
-      <li><a href="#gallery">Flowers</a></li>
-      <li><a href="#story">Story</a></li>
+      <li><a href="#products">Flowers</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="orders.html">Orders</a></li>
+      <li>
+        <button class="cart-btn" id="cartToggle" aria-label="Open cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </li>
     </ul>
   </nav>
 
   <!-- ─── HERO ─── -->
   <section id="hero">
-    <div class="particle-field" id="particles"></div>
-    <div class="hero-grid">
-      <div class="hero-text">
-        <div class="hero-badge">Handcrafted with care</div>
-        <h1 id="heroHeading">
-          <span class="stagger-text"><span>W</span></span><span class="stagger-text"><span>h</span></span><span class="stagger-text"><span>e</span></span><span class="stagger-text"><span>r</span></span><span class="stagger-text"><span>e</span></span>
-          <span class="stagger-text"><span>&nbsp;</span></span>
-          <span class="stagger-text"><span>P</span></span><span class="stagger-text"><span>i</span></span><span class="stagger-text"><span>p</span></span><span class="stagger-text"><span>e</span></span>
-          <span class="stagger-text"><span>&nbsp;</span></span>
-          <span class="stagger-text"><span>C</span></span><span class="stagger-text"><span>l</span></span><span class="stagger-text"><span>e</span></span><span class="stagger-text"><span>a</span></span><span class="stagger-text"><span>n</span></span><span class="stagger-text"><span>e</span></span><span class="stagger-text"><span>r</span></span><span class="stagger-text"><span>s</span></span>
-          <br>
-          <span class="stagger-text"><span>B</span></span><span class="stagger-text"><span>l</span></span><span class="stagger-text"><span>o</span></span><span class="stagger-text"><span>o</span></span><span class="stagger-text"><span>m</span></span>
-        </h1>
-        <p>Handcrafted flowers that never wilt — each petal carefully twisted from premium chenille stems.</p>
+    <div class="hero-grid tilt-scene">
+      <div class="hero-text" id="heroText">
+        <div class="hero-badge">Handcrafted with love</div>
+        <h1>Flowers that<br><span>never fade</span></h1>
+        <p>Handcrafted pipe cleaner flowers, made with care in every twist. Each bloom is a one-of-a-kind piece of art.</p>
         <div class="hero-buttons">
-          <a href="#gallery" class="btn btn-primary" id="exploreBtn">
-            Explore the Garden
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          <a href="#products" class="btn btn-primary">
+            Shop Now
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="#story" class="btn btn-secondary">Our Story</a>
+          <a href="#about" class="btn btn-secondary">Our Story</a>
         </div>
       </div>
-      <div class="hero-visual tilt-scene">
+      <div class="hero-visual">
         <div class="tilt-3d" id="heroTilt">
           <div class="flower-container" id="heroFlower">
-            <div class="flower bloom" id="flowerRotate">
-              <div class="petal-group" style="top: 50%; left: 50%;">
-                <div class="petal" style="--bloom-start: rotate(0deg); --bloom-end: rotate(0deg); transform: rotate(0deg) translateY(-65px); background: linear-gradient(180deg, #FF6B9D 40%, #E85D8A 100%);"><div class="petal-inner"></div></div>
-                <div class="petal" style="--bloom-start: rotate(45deg); --bloom-end: rotate(45deg); transform: rotate(45deg) translateY(-65px); background: linear-gradient(180deg, #FF8A80 40%, #FF6B9D 100%);"><div class="petal-inner"></div></div>
-                <div class="petal" style="--bloom-start: rotate(90deg); --bloom-end: rotate(90deg); transform: rotate(90deg) translateY(-65px); background: linear-gradient(180deg, #FF6B9D 40%, #D4597A 100%);"><div class="petal-inner"></div></div>
-                <div class="petal" style="--bloom-start: rotate(135deg); --bloom-end: rotate(135deg); transform: rotate(135deg) translateY(-65px); background: linear-gradient(180deg, #FF8A80 40%, #FF6B9D 100%);"><div class="petal-inner"></div></div>
-                <div class="petal" style="--bloom-start: rotate(180deg); --bloom-end: rotate(180deg); transform: rotate(180deg) translateY(-65px); background: linear-gradient(180deg, #FF6B9D 40%, #E85D8A 100%);"><div class="petal-inner"></div></div>
-                <div class="petal" style="--bloom-start: rotate(225deg); --bloom-end: rotate(225deg); transform: rotate(225deg) translateY(-65px); background: linear-gradient(180deg, #FF8A80 40%, #FF6B9D 100%);"><div class="petal-inner"></div></div>
-                <div class="petal" style="--bloom-start: rotate(270deg); --bloom-end: rotate(270deg); transform: rotate(270deg) translateY(-65px); background: linear-gradient(180deg, #FF6B9D 40%, #D4597A 100%);"><div class="petal-inner"></div></div>
-                <div class="petal" style="--bloom-start: rotate(315deg); --bloom-end: rotate(315deg); transform: rotate(315deg) translateY(-65px); background: linear-gradient(180deg, #FF8A80 40%, #FF6B9D 100%);"><div class="petal-inner"></div></div>
+            <div class="flower">
+              <div class="petal-group" style="top:50%;left:50%">
+                <div class="petal" style="transform:rotate(0deg) translateY(-60px);background:linear-gradient(170deg,#D4897A,#C47A6A)"></div>
+                <div class="petal" style="transform:rotate(45deg) translateY(-60px);background:linear-gradient(170deg,#E0A090,#D4897A)"></div>
+                <div class="petal" style="transform:rotate(90deg) translateY(-60px);background:linear-gradient(170deg,#D4897A,#C47A6A)"></div>
+                <div class="petal" style="transform:rotate(135deg) translateY(-60px);background:linear-gradient(170deg,#E0A090,#D4897A)"></div>
+                <div class="petal" style="transform:rotate(180deg) translateY(-60px);background:linear-gradient(170deg,#D4897A,#C47A6A)"></div>
+                <div class="petal" style="transform:rotate(225deg) translateY(-60px);background:linear-gradient(170deg,#E0A090,#D4897A)"></div>
+                <div class="petal" style="transform:rotate(270deg) translateY(-60px);background:linear-gradient(170deg,#D4897A,#C47A6A)"></div>
+                <div class="petal" style="transform:rotate(315deg) translateY(-60px);background:linear-gradient(170deg,#E0A090,#D4897A)"></div>
               </div>
-              <div class="petal-outer" style="--outer-rotate: rotate(0deg); background: linear-gradient(180deg, rgba(255,107,157,0.3), rgba(255,107,157,0.1));"></div>
-              <div class="petal-outer" style="--outer-rotate: rotate(45deg); background: linear-gradient(180deg, rgba(255,138,128,0.3), rgba(255,107,157,0.1));"></div>
-              <div class="petal-outer" style="--outer-rotate: rotate(90deg); background: linear-gradient(180deg, rgba(255,107,157,0.3), rgba(255,107,157,0.1));"></div>
-              <div class="petal-outer" style="--outer-rotate: rotate(135deg); background: linear-gradient(180deg, rgba(255,138,128,0.3), rgba(255,107,157,0.1));"></div>
-              <div class="petal-outer" style="--outer-rotate: rotate(180deg); background: linear-gradient(180deg, rgba(255,107,157,0.3), rgba(255,107,157,0.1));"></div>
-              <div class="petal-outer" style="--outer-rotate: rotate(225deg); background: linear-gradient(180deg, rgba(255,138,128,0.3), rgba(255,107,157,0.1));"></div>
-              <div class="petal-outer" style="--outer-rotate: rotate(270deg); background: linear-gradient(180deg, rgba(255,107,157,0.3), rgba(255,107,157,0.1));"></div>
-              <div class="petal-outer" style="--outer-rotate: rotate(315deg); background: linear-gradient(180deg, rgba(255,138,128,0.3), rgba(255,107,157,0.1));"></div>
+              <div class="petal-outer" style="--outer-rotate:rotate(0deg);background:linear-gradient(170deg,rgba(212,137,122,0.2),rgba(212,137,122,0.06))"></div>
+              <div class="petal-outer" style="--outer-rotate:rotate(45deg);background:linear-gradient(170deg,rgba(212,137,122,0.2),rgba(212,137,122,0.06))"></div>
+              <div class="petal-outer" style="--outer-rotate:rotate(90deg);background:linear-gradient(170deg,rgba(212,137,122,0.2),rgba(212,137,122,0.06))"></div>
+              <div class="petal-outer" style="--outer-rotate:rotate(135deg);background:linear-gradient(170deg,rgba(212,137,122,0.2),rgba(212,137,122,0.06))"></div>
+              <div class="petal-outer" style="--outer-rotate:rotate(180deg);background:linear-gradient(170deg,rgba(212,137,122,0.2),rgba(212,137,122,0.06))"></div>
+              <div class="petal-outer" style="--outer-rotate:rotate(225deg);background:linear-gradient(170deg,rgba(212,137,122,0.2),rgba(212,137,122,0.06))"></div>
+              <div class="petal-outer" style="--outer-rotate:rotate(270deg);background:linear-gradient(170deg,rgba(212,137,122,0.2),rgba(212,137,122,0.06))"></div>
+              <div class="petal-outer" style="--outer-rotate:rotate(315deg);background:linear-gradient(170deg,rgba(212,137,122,0.2),rgba(212,137,122,0.06))"></div>
               <div class="flower-center"></div>
             </div>
           </div>
@@ -1171,172 +1357,78 @@
     </div>
   </section>
 
-  <!-- ─── GALLERY ─── -->
-  <section id="gallery">
+  <!-- ─── PRODUCTS ─── -->
+  <section id="products">
     <div class="section-divider"></div>
-    <div class="container" style="padding-top: 100px;">
-      <div class="gallery-header" id="galleryHeader">
+    <div class="container" style="padding-top:90px">
+      <div class="products-header" id="productsHeader">
         <div class="section-label">Our Collection</div>
         <h2 class="section-title">Hand-Twisted Blooms</h2>
-        <p class="section-sub">Each flower is a one-of-a-kind creation, twisted by hand from soft chenille stems. No two are exactly alike.</p>
+        <p class="section-sub">Each flower is carefully crafted by hand. No two are exactly alike.</p>
       </div>
-      <div class="gallery-grid" id="galleryGrid">
-
-        <div class="flower-card" data-delay="0">
-          <div class="card-flower" style="--flower-color: #FF6B9D; --petal-color: linear-gradient(180deg, #FF6B9D, #E85D8A);">
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF6B9D, #E85D8A);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF8A80, #FF6B9D);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF6B9D, #E85D8A);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF8A80, #FF6B9D);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF6B9D, #E85D8A);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF8A80, #FF6B9D);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF6B9D, #E85D8A);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF8A80, #FF6B9D);"></div>
-            <div class="card-center" style="background: radial-gradient(circle at 40% 40%, var(--accent-gold), #E8A035);"></div>
-          </div>
-          <h3>Rosetta Rose</h3>
-          <div class="price">$14</div>
-          <p>A romantic bloom with layered pink petals. Each rose takes 45 minutes to hand-twist.</p>
-        </div>
-
-        <div class="flower-card" data-delay="100">
-          <div class="card-flower" style="--flower-color: #FFB84D; --petal-color: linear-gradient(180deg, #FFB84D, #E8A035);">
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFB84D, #E8A035);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFCC80, #FFB84D);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFB84D, #E8A035);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFCC80, #FFB84D);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFB84D, #E8A035);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFCC80, #FFB84D);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFB84D, #E8A035);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFCC80, #FFB84D);"></div>
-            <div class="card-center" style="background: radial-gradient(circle at 40% 40%, #8B5E3C, #6D4A2E);"></div>
-          </div>
-          <h3>Solara Sunflower</h3>
-          <div class="price">$12</div>
-          <p>Bring sunshine indoors. Nearly three feet of pipe cleaner twisted into a golden bloom.</p>
-        </div>
-
-        <div class="flower-card" data-delay="200">
-          <div class="card-flower" style="--flower-color: #B388FF; --petal-color: linear-gradient(180deg, #B388FF, #9575CD);">
-            <div class="card-petal" style="background: linear-gradient(180deg, #B388FF, #9575CD);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #CE93D8, #B388FF);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #B388FF, #9575CD);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #CE93D8, #B388FF);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #B388FF, #9575CD);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #CE93D8, #B388FF);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #B388FF, #9575CD);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #CE93D8, #B388FF);"></div>
-            <div class="card-center" style="background: radial-gradient(circle at 40% 40%, var(--accent-gold), #E8A035);"></div>
-          </div>
-          <h3>Violet Dream Tulip</h3>
-          <div class="price">$11</div>
-          <p>Sleek and elegant, capturing the grace of spring in rich purple hues.</p>
-        </div>
-
-        <div class="flower-card" data-delay="300">
-          <div class="card-flower" style="--flower-color: #6CD4A0; --petal-color: linear-gradient(180deg, #6CD4A0, #4CAF50);">
-            <div class="card-petal" style="background: linear-gradient(180deg, #6CD4A0, #4CAF50);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #81C784, #6CD4A0);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #6CD4A0, #4CAF50);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #81C784, #6CD4A0);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #6CD4A0, #4CAF50);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #81C784, #6CD4A0);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #6CD4A0, #4CAF50);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #81C784, #6CD4A0);"></div>
-            <div class="card-center" style="background: radial-gradient(circle at 40% 40%, var(--accent-gold), #E8A035);"></div>
-          </div>
-          <h3>Jade Lotus</h3>
-          <div class="price">$15</div>
-          <p>A serene mint-green lotus inspired by tranquil garden ponds.</p>
-        </div>
-
-        <div class="flower-card" data-delay="400">
-          <div class="card-flower" style="--flower-color: #FF8A65; --petal-color: linear-gradient(180deg, #FF8A65, #E64A19);">
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF8A65, #E64A19);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFAB91, #FF8A65);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF8A65, #E64A19);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFAB91, #FF8A65);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF8A65, #E64A19);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFAB91, #FF8A65);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FF8A65, #E64A19);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #FFAB91, #FF8A65);"></div>
-            <div class="card-center" style="background: radial-gradient(circle at 40% 40%, #5D4037, #3E2723);"></div>
-          </div>
-          <h3>Scarlet Poppy</h3>
-          <div class="price">$13</div>
-          <p>Bold crimson petals with a dark center. A striking statement piece.</p>
-        </div>
-
-        <div class="flower-card" data-delay="500">
-          <div class="card-flower" style="--flower-color: #F0E6D0; --petal-color: linear-gradient(180deg, #F0E6D0, #E0D5C0);">
-            <div class="card-petal" style="background: linear-gradient(180deg, #F0E6D0, #E0D5C0);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #F5F0E0, #F0E6D0);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #F0E6D0, #E0D5C0);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #F5F0E0, #F0E6D0);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #F0E6D0, #E0D5C0);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #F5F0E0, #F0E6D0);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #F0E6D0, #E0D5C0);"></div>
-            <div class="card-petal" style="background: linear-gradient(180deg, #F5F0E0, #F0E6D0);"></div>
-            <div class="card-center" style="background: radial-gradient(circle at 40% 40%, var(--accent-gold), #E8A035);"></div>
-          </div>
-          <h3>Daisy Chain</h3>
-          <div class="price">$10</div>
-          <p>Simple, cheerful daisies that brighten any corner. Available in white or yellow.</p>
-        </div>
-
+      <div class="category-filters" id="categoryFilters">
+        <button class="category-btn active" data-cat="all">All</button>
+        <button class="category-btn" data-cat="rose">Roses</button>
+        <button class="category-btn" data-cat="sunflower">Sunflowers</button>
+        <button class="category-btn" data-cat="tulip">Tulips</button>
+        <button class="category-btn" data-cat="wildflower">Wildflowers</button>
       </div>
+      <div class="product-grid" id="productGrid"></div>
     </div>
   </section>
 
-  <!-- ─── STORY ─── -->
-  <section id="story">
+  <!-- ─── ABOUT ─── -->
+  <section id="about">
     <div class="section-divider"></div>
-    <div class="container" style="padding-top: 100px;">
-      <div class="story-layout">
-        <div class="story-content" id="storyContent">
-          <div class="section-label">Our Story</div>
-          <h2 class="section-title">Every Twist Tells a Story</h2>
-          <p class="section-sub" style="margin-bottom: 0;">Twist & Bloom was born from a simple belief: that beautiful things can be made from the most unexpected materials. What started as a rainy afternoon craft became a passion — transforming humble pipe cleaners into intricate, lifelike flowers that never fade.</p>
-          <p style="margin-top: 20px;">Each flower is hand-twisted, petal by petal, using premium chenille stems. No two are exactly alike, because the beauty of handmade is in the imperfection. Every bloom carries the time, care, and intention of the hands that shaped it.</p>
-          <p>We source our materials in small batches and take pride in a process that asks for nothing but patience and creativity. Whether you're decorating your home or looking for a gift that lasts, each flower carries a little piece of that original wonder.</p>
+    <div class="container" style="padding-top:90px">
+      <div style="text-align:center;margin-bottom:40px" class="about-header-reveal">
+        <div class="section-label">About Us</div>
+        <h2 class="section-title">Every Twist Tells a Story</h2>
+        <p class="section-sub" style="margin:0 auto">We turn humble pipe cleaners into everlasting blooms, one petal at a time.</p>
+      </div>
+      <div class="about-layout">
+        <div class="about-content" id="aboutContent">
+          <p>gul-o-rang was born from a simple belief: beautiful things can come from the most unexpected materials. What started as a quiet afternoon craft became a passion — transforming humble pipe cleaners into flowers that never fade.</p>
+          <p>Each petal is hand-twisted using premium chenille stems. No two blooms are the same, because the beauty of handmade lies in the imperfection. Every flower carries the time and care of the hands that shaped it.</p>
+          <p>Whether you're brightening your home or gifting something that lasts, each piece carries a little piece of that original wonder.</p>
         </div>
-        <div class="story-visual" id="storyVisual">
-          <div class="story-flower-group">
+        <div class="about-visual" id="aboutVisual">
+          <div class="about-flower-group">
             <div class="mini-flower">
-              <div class="mp" style="background: linear-gradient(180deg, #FF6B9D, #E85D8A);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #FF8A80, #FF6B9D);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #FF6B9D, #E85D8A);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #FF8A80, #FF6B9D);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #FF6B9D, #E85D8A);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #FF8A80, #FF6B9D);"></div>
-              <div class="mini-center" style="background: radial-gradient(circle at 40% 40%, var(--accent-gold), #E8A035);"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#D4897A,#C47A6A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#E0A090,#D4897A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#D4897A,#C47A6A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#E0A090,#D4897A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#D4897A,#C47A6A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#E0A090,#D4897A)"></div>
+              <div class="mini-center" style="background:radial-gradient(circle at 40% 40%,#D4A373,#C49060)"></div>
             </div>
             <div class="mini-flower">
-              <div class="mp" style="background: linear-gradient(180deg, #B388FF, #9575CD);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #CE93D8, #B388FF);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #B388FF, #9575CD);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #CE93D8, #B388FF);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #B388FF, #9575CD);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #CE93D8, #B388FF);"></div>
-              <div class="mini-center" style="background: radial-gradient(circle at 40% 40%, var(--accent-gold), #E8A035);"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#D4A373,#C49060)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#E0B890,#D4A373)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#D4A373,#C49060)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#E0B890,#D4A373)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#D4A373,#C49060)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#E0B890,#D4A373)"></div>
+              <div class="mini-center" style="background:radial-gradient(circle at 40% 40%,#D4897A,#BD7A6C)"></div>
             </div>
             <div class="mini-flower">
-              <div class="mp" style="background: linear-gradient(180deg, #FFB84D, #E8A035);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #FFCC80, #FFB84D);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #FFB84D, #E8A035);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #FFCC80, #FFB84D);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #FFB84D, #E8A035);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #FFCC80, #FFB84D);"></div>
-              <div class="mini-center" style="background: radial-gradient(circle at 40% 40%, #8B5E3C, #6D4A2E);"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#4A8B7A,#3D7A6A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#5A9B8A,#4A8B7A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#4A8B7A,#3D7A6A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#5A9B8A,#4A8B7A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#4A8B7A,#3D7A6A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#5A9B8A,#4A8B7A)"></div>
+              <div class="mini-center" style="background:radial-gradient(circle at 40% 40%,#D4A373,#C49060)"></div>
             </div>
             <div class="mini-flower">
-              <div class="mp" style="background: linear-gradient(180deg, #6CD4A0, #4CAF50);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #81C784, #6CD4A0);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #6CD4A0, #4CAF50);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #81C784, #6CD4A0);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #6CD4A0, #4CAF50);"></div>
-              <div class="mp" style="background: linear-gradient(180deg, #81C784, #6CD4A0);"></div>
-              <div class="mini-center" style="background: radial-gradient(circle at 40% 40%, var(--accent-gold), #E8A035);"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#D4897A,#C47A6A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#E0A090,#D4897A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#D4897A,#C47A6A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#E0A090,#D4897A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#D4897A,#C47A6A)"></div>
+              <div class="mp" style="background:linear-gradient(170deg,#E0A090,#D4897A)"></div>
+              <div class="mini-center" style="background:radial-gradient(circle at 40% 40%,#BD7A6C,#A06A5C)"></div>
             </div>
           </div>
         </div>
@@ -1347,22 +1439,22 @@
   <!-- ─── CONTACT ─── -->
   <section id="contact">
     <div class="section-divider"></div>
-    <div class="container" style="padding-top: 100px;">
+    <div class="container" style="padding-top:90px">
       <div class="section-label">Get in Touch</div>
-      <h2 class="section-title">Ready for Everlasting Blooms?</h2>
-      <p class="section-sub" style="margin: 0 auto;">Whether you have a custom order in mind or just want to say hello, we'd love to hear from you.</p>
+      <h2 class="section-title">Let's Create Something Beautiful</h2>
+      <p class="section-sub" style="margin:0 auto">Have a custom order in mind or just want to say hello? We'd love to hear from you.</p>
       <form class="contact-form" id="contactForm">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required>
+          <input type="text" id="name" placeholder="Your name" required>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          <input type="email" id="email" placeholder="your@email.com" required>
         </div>
         <div class="form-group">
           <label for="orderType">Interested in</label>
-          <select id="orderType" name="orderType">
+          <select id="orderType">
             <option value="">Select one...</option>
             <option value="single">Single Flower</option>
             <option value="bouquet">Bouquet</option>
@@ -1372,12 +1464,9 @@
         </div>
         <div class="form-group">
           <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell us what you're looking for..." required></textarea>
+          <textarea id="message" placeholder="Tell us what you're looking for..." required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">
-          Send Message
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-        </button>
+        <button type="submit" class="btn btn-primary">Send Message</button>
       </form>
     </div>
   </section>
@@ -1385,50 +1474,412 @@
   <!-- ─── FOOTER ─── -->
   <footer>
     <div class="container">
-      <p>Made with <span>&#9829;</span> and pipe cleaners. Twist &amp; Bloom &mdash; Est. 2024</p>
+      <p>Made with <span>&#9829;</span> and pipe cleaners. gul-o-rang — Est. 2024</p>
     </div>
   </footer>
 
+  <a href="admin.html" class="admin-link" target="_blank">Admin</a>
+
+  <!-- ─── CART SIDEBAR ─── -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="cart-close" id="cartClose">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Your cart is empty.</div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">PKR 0</span>
+      </div>
+      <button class="btn btn-primary" id="checkoutBtn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- ─── CHECKOUT MODAL ─── -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal">
+      <h2>Place Order</h2>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:16px">Fill in your details to complete the order.</p>
+      <form id="checkoutForm">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="checkoutName" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="checkoutEmail" required>
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="checkoutPhone" required>
+        </div>
+        <div class="form-group">
+          <label>Delivery Address</label>
+          <textarea id="checkoutAddress" required></textarea>
+        </div>
+        <div class="order-summary" id="checkoutSummary"></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Place Order</button>
+        <button type="button" class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:8px" onclick="closeCheckout()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── IMAGE GALLERY MODAL ─── -->
+  <div class="modal-overlay" id="galleryModal">
+    <div class="modal" style="max-width:720px">
+      <h2 id="galleryTitle"></h2>
+      <div id="galleryCarousel" style="display:flex;gap:12px;overflow-x:auto;padding:16px 0;scroll-snap-type:x mandatory;scrollbar-width:thin"></div>
+      <button class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:12px" onclick="document.getElementById('galleryModal').classList.remove('open')">Close</button>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
   <script>
-    // ─── PARTICLES ───
-    (function createParticles() {
-      const field = document.getElementById('particles');
-      if (!field) return;
-      const colors = ['var(--accent-rose)', 'var(--accent-gold)', 'var(--accent-amethyst)', 'var(--accent-mint)', 'var(--accent-coral)'];
+    // ─── PRODUCT DATA ───
+    const defaultProducts = [
+      { id: 1, name: 'Rosetta Rose', price: 1200, category: 'rose', desc: 'A romantic bloom with layered coral-peach petals. Each rose takes 45 minutes to hand-twist.', colors: ['#D4897A','#C47A6A','#E0A090'] },
+      { id: 2, name: 'Solara Sunflower', price: 1000, category: 'sunflower', desc: 'Bring sunshine indoors. Nearly three feet of pipe cleaner in every golden bloom.', colors: ['#D4A373','#C49060','#E0B890'] },
+      { id: 3, name: 'Violet Dream Tulip', price: 950, category: 'tulip', desc: 'Sleek and elegant, capturing the grace of spring in rich violet hues.', colors: ['#C8B0D8','#B8A0C8','#D8C0E8'] },
+      { id: 4, name: 'Jade Lotus', price: 1300, category: 'wildflower', desc: 'A serene teal-green lotus inspired by tranquil garden ponds.', colors: ['#4A8B7A','#3D7A6A','#5A9B8A'] },
+      { id: 5, name: 'Scarlet Poppy', price: 1100, category: 'wildflower', desc: 'Bold crimson petals with a dark center. A striking statement piece.', colors: ['#D47070','#C46060','#E08080'] },
+      { id: 6, name: 'Daisy Chain', price: 850, category: 'wildflower', desc: 'Simple, cheerful daisies that brighten any corner. Available in white or yellow.', colors: ['#F0E8D8','#E8D5B0','#FFF8EE'] },
+      { id: 7, name: 'Golden Marigold', price: 900, category: 'sunflower', desc: 'Warm golden-orange petals that bring a touch of sunlight to any room.', colors: ['#E8C870','#DCC060','#F0D880'] },
+      { id: 8, name: 'Blush Peony', price: 1400, category: 'rose', desc: 'Lush, full-bodied bloom with soft blush petals. Our most intricate design.', colors: ['#E0B0A0','#D4A090','#E8C0B0'] },
+    ];
 
-      for (let i = 0; i < 45; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const size = 1.5 + Math.random() * 5;
-        const x = Math.random() * 100;
-        const delay = Math.random() * 14;
-        const duration = 7 + Math.random() * 16;
-        const color = colors[Math.floor(Math.random() * colors.length)];
+    let products = [];
+    let cart = [];
+    let orders = [];
 
-        p.style.cssText = `
-          width: ${size}px;
-          height: ${size}px;
-          left: ${x}%;
-          bottom: -10px;
-          background: ${color};
-          box-shadow: 0 0 ${size * 3}px ${color};
-          animation-duration: ${duration}s;
-          animation-delay: ${delay}s;
+    try {
+      const stored = localStorage.getItem('gor_products');
+      products = stored ? JSON.parse(stored) : defaultProducts;
+    } catch(e) { products = defaultProducts; }
+
+    try {
+      const stored = localStorage.getItem('gor_cart');
+      cart = stored ? JSON.parse(stored) : [];
+      if (cart.length && (cart[0].images || cart[0].image || cart[0].colors)) { cart = []; saveCart(); }
+    } catch(e) { cart = []; }
+
+    try {
+      const stored = localStorage.getItem('gor_orders');
+      orders = stored ? JSON.parse(stored) : [];
+    } catch(e) { orders = []; }
+
+    function saveCart() { localStorage.setItem('gor_cart', JSON.stringify(cart)); }
+    function saveOrders() { localStorage.setItem('gor_orders', JSON.stringify(orders)); }
+
+    // ─── RENDER PRODUCTS ───
+    function renderProducts(category = 'all') {
+      const grid = document.getElementById('productGrid');
+      const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+      grid.innerHTML = filtered.map((p, i) => {
+        const imgs = p.images || (p.image ? [p.image] : []);
+        const flowerHtml = imgs.length
+          ? `<div class="product-flower" style="animation:none;width:120px;height:120px;cursor:pointer;position:relative" onclick="openGallery(${p.id})">
+               <img src="${imgs[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:12px">
+               ${imgs.length > 1 ? `<div style="position:absolute;bottom:4px;right:4px;background:rgba(0,0,0,.5);color:#fff;font-size:.65rem;padding:1px 6px;border-radius:4px">+${imgs.length-1}</div>` : ''}
+             </div>`
+          : (() => {
+              const petals = Array.from({length: 8}, (_, j) => {
+                const angle = j * 45;
+                const color = p.colors[j % p.colors.length];
+                return `<div class="pf-petal" style="transform:rotate(${angle}deg) translateY(-24px);background:linear-gradient(170deg,${color},${color}dd)"></div>`;
+              }).join('');
+              return `<div class="product-flower">${petals}<div class="pf-center" style="background:radial-gradient(circle at 40% 40%,#E8D5B0,#D4B896)"></div></div>`;
+            })();
+        return `
+          <div class="product-card" data-delay="${i * 80}" data-id="${p.id}">
+            ${flowerHtml}
+            <h3>${p.name}</h3>
+            <div class="price">PKR ${p.price.toLocaleString()}</div>
+            <div class="product-desc">${p.desc}</div>
+            <button class="btn btn-outline add-to-cart" data-id="${p.id}">Add to Cart</button>
+          </div>
         `;
-        field.appendChild(p);
+      }).join('');
+
+      // Re-observe for scroll reveal
+      document.querySelectorAll('.product-card').forEach((card, i) => {
+        const delay = parseInt(card.dataset.delay) || 0;
+        card.style.transitionDelay = delay + 'ms';
+        revealObserver.observe(card);
+      });
+
+      // Attach card tilt
+    }
+
+    // ─── IMAGE GALLERY ───
+    function openGallery(productId) {
+      const p = products.find(x => x.id === productId);
+      if (!p) return;
+      const imgs = p.images || (p.image ? [p.image] : []);
+      if (!imgs.length) return;
+      document.getElementById('galleryTitle').textContent = p.name;
+      const carousel = document.getElementById('galleryCarousel');
+      carousel.innerHTML = imgs.map(src => `
+        <img src="${src}" alt="${p.name}" style="height:360px;border-radius:12px;flex-shrink:0;scroll-snap-align:start;object-fit:contain;background:var(--bg-alt);max-width:100%">
+      `).join('');
+      document.getElementById('galleryModal').classList.add('open');
+    }
+
+    // ─── PRODUCT GRID EVENTS (delegation) ───
+    document.getElementById('productGrid').addEventListener('click', function(e) {
+      const btn = e.target.closest('.add-to-cart');
+      if (btn) {
+        e.stopPropagation();
+        addToCart(parseInt(btn.dataset.id));
+        return;
       }
+      const card = e.target.closest('.product-card');
+      if (card) {
+        const id = parseInt(card.dataset.id);
+        location.href = 'product.html?id=' + id;
+      }
+    });
+
+    // ─── CATEGORY FILTERS ───
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        renderProducts(this.dataset.cat);
+      });
+    });
+
+    // ─── CART ───
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+      const existing = cart.find(c => c.id === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
+      }
+      saveCart();
+      updateCartUI();
+      showToast(`${product.name} added to cart`);
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(c => c.id !== productId);
+      saveCart();
+      updateCartUI();
+    }
+
+    function updateQty(productId, delta) {
+      const item = cart.find(c => c.id === productId);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        removeFromCart(productId);
+        return;
+      }
+      saveCart();
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const count = cart.reduce((s, c) => s + c.qty, 0);
+      document.getElementById('cartCount').textContent = count;
+      const items = document.getElementById('cartItems');
+      const footer = document.getElementById('cartFooter');
+
+      if (cart.length === 0) {
+        items.innerHTML = '<div class="cart-empty">Your cart is empty.</div>';
+        footer.style.display = 'none';
+        return;
+      }
+
+      footer.style.display = 'block';
+      items.innerHTML = cart.map(item => {
+        const p = products.find(x => x.id === item.id);
+        const img = p ? (p.images?.[0] || p.image || '') : '';
+        return `
+          <div class="cart-item">
+            ${img ? `<img src="${img}" style="width:48px;height:48px;border-radius:8px;object-fit:cover;flex-shrink:0">` : ''}
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <div class="item-price">PKR ${item.price.toLocaleString()}</div>
+              <div class="cart-item-qty">
+                <button onclick="updateQty(${item.id}, -1)">-</button>
+                <span>${item.qty}</span>
+                <button onclick="updateQty(${item.id}, 1)">+</button>
+              </div>
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart(${item.id})">&times;</button>
+          </div>
+        `;
+      }).join('');
+
+      const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+      document.getElementById('cartTotal').textContent = `PKR ${total.toLocaleString()}`;
+    }
+
+    // ─── CART SIDEBAR ───
+    const cartToggle = document.getElementById('cartToggle');
+    const cartSidebar = document.getElementById('cartSidebar');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartClose = document.getElementById('cartClose');
+
+    function openCart() {
+      cartSidebar.classList.add('open');
+      cartOverlay.classList.add('open');
+    }
+
+    function closeCart() {
+      cartSidebar.classList.remove('open');
+      cartOverlay.classList.remove('open');
+    }
+
+    cartToggle.addEventListener('click', openCart);
+    cartClose.addEventListener('click', closeCart);
+    cartOverlay.addEventListener('click', closeCart);
+
+    // ─── CHECKOUT ───
+    const checkoutModal = document.getElementById('checkoutModal');
+    const checkoutForm = document.getElementById('checkoutForm');
+    const checkoutSummary = document.getElementById('checkoutSummary');
+
+    function openCheckout() {
+      if (cart.length === 0) return;
+      const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+      checkoutSummary.innerHTML = cart.map(c =>
+        `<div class="order-line"><span>${c.name} x${c.qty}</span><span>PKR ${(c.price * c.qty).toLocaleString()}</span></div>`
+      ).join('') +
+      `<div class="order-total"><span>Total</span><span>PKR ${total.toLocaleString()}</span></div>`;
+      checkoutModal.classList.add('open');
+    }
+
+    function closeCheckout() {
+      checkoutModal.classList.remove('open');
+    }
+
+    document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
+    checkoutModal.addEventListener('click', (e) => { if (e.target === checkoutModal) closeCheckout(); });
+
+    checkoutForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const order = {
+        id: Date.now(),
+        date: new Date().toISOString(),
+        items: JSON.parse(JSON.stringify(cart)),
+        total: cart.reduce((s, c) => s + c.price * c.qty, 0),
+        customer: {
+          name: document.getElementById('checkoutName').value,
+          email: document.getElementById('checkoutEmail').value,
+          phone: document.getElementById('checkoutPhone').value,
+          address: document.getElementById('checkoutAddress').value,
+        },
+        status: 'pending'
+      };
+      orders.push(order);
+      saveOrders();
+      cart = [];
+      saveCart();
+      updateCartUI();
+      closeCart();
+      closeCheckout();
+      checkoutForm.reset();
+      showToast('Order placed! We\'ll contact you soon.');
+    });
+
+    // ─── TOAST ───
+    function showToast(msg) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = msg;
+      container.appendChild(toast);
+      setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2500);
+    }
+
+    // ─── CONTACT FORM ───
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      showToast('Message sent! We\'ll get back to you soon.');
+      this.reset();
+    });
+
+    // ─── SCROLL REVEAL ───
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+    // ─── 3D CURSOR TRACKING ───
+    (function cursor3D() {
+      const hero = document.getElementById('hero');
+      const heroTilt = document.getElementById('heroTilt');
+      const heroText = document.getElementById('heroText');
+
+      function getTilt(el, e, intensity) {
+        const rect = el.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        return { tiltX: -(y - 0.5) * intensity, tiltY: (x - 0.5) * intensity };
+      }
+
+      function getDepth(el, e, intensity) {
+        const rect = el.getBoundingClientRect();
+        return { dx: ((e.clientX - rect.left) / rect.width - 0.5) * intensity, dy: ((e.clientY - rect.top) / rect.height - 0.5) * intensity };
+      }
+
+      document.addEventListener('mousemove', (e) => {
+        if (!hero) return;
+        if (heroTilt) {
+          const { tiltX, tiltY } = getTilt(hero, e, 12);
+          heroTilt.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        }
+        if (heroText) {
+          const { dx, dy } = getDepth(hero, e, 8);
+          heroText.style.transform = `translate(${-dx}px, ${-dy}px)`;
+        }
+      });
+
+      function initCardTilt() {
+        document.querySelectorAll('.product-card').forEach(card => {
+          let inner = card.querySelector('.card-inner');
+          if (inner) return;
+          inner = document.createElement('div');
+          inner.className = 'card-inner';
+          const children = [...card.children];
+          children.forEach(child => inner.appendChild(child));
+          card.appendChild(inner);
+          card.addEventListener('mousemove', (e) => {
+            const { tiltX, tiltY } = getTilt(card, e, 8);
+            inner.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+          });
+          card.addEventListener('mouseleave', () => { inner.style.transform = 'rotateX(0deg) rotateY(0deg)'; });
+        });
+      }
+      initCardTilt();
     })();
+
+    // ─── NAV SCROLL ───
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
 
     // ─── SCROLL PROGRESS ───
     const progressBar = document.getElementById('progressBar');
-    if (progressBar) {
-      window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = progress + '%';
-      }, { passive: true });
-    }
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = docHeight > 0 ? (scrollTop / docHeight) * 100 + '%' : '0%';
+    }, { passive: true });
 
     // ─── MOUSE GLOW ───
     const glow = document.getElementById('mouseGlow');
@@ -1439,106 +1890,9 @@
         glow.style.top = e.clientY + 'px';
         glow.classList.add('active');
         clearTimeout(glowTimeout);
-        glowTimeout = setTimeout(() => glow.classList.remove('active'), 2000);
+        glowTimeout = setTimeout(() => glow.classList.remove('active'), 1500);
       });
     }
-
-    // ─── NAV SCROLL ───
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      nav.classList.toggle('scrolled', y > 80);
-    }, { passive: true });
-
-    // ─── HERO TEXT STAGGER ───
-    (function staggerHeroText() {
-      const heading = document.getElementById('heroHeading');
-      if (!heading) return;
-      const staggerSpans = heading.querySelectorAll('.stagger-text span');
-      staggerSpans.forEach((span, i) => {
-        span.style.animationDelay = (0.8 + i * 0.035) + 's';
-      });
-    })();
-
-    // ─── 3D CURSOR TRACKING ───
-    (function cursor3D() {
-      const hero = document.getElementById('hero');
-      const heroTilt = document.getElementById('heroTilt');
-      const heroText = hero ? hero.querySelector('.hero-text') : null;
-      const heroP = hero ? hero.querySelector('.hero-text p') : null;
-      const heroButtons = hero ? hero.querySelector('.hero-buttons') : null;
-
-      function getTilt(el, e, intensity) {
-        const rect = el.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width;
-        const y = (e.clientY - rect.top) / rect.height;
-        const tiltX = -(y - 0.5) * intensity;
-        const tiltY = (x - 0.5) * intensity;
-        return { tiltX, tiltY };
-      }
-
-      function getDepth(el, e, intensity) {
-        const rect = el.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        return { dx: x * intensity, dy: y * intensity };
-      }
-
-      // Wait for entrance animations to finish before activating depth
-      const heroReady = new Promise(resolve => setTimeout(resolve, 2000));
-
-      document.addEventListener('mousemove', (e) => {
-        if (!hero) return;
-
-        // Hero 3D flower tilt — works immediately, doesn't conflict with CSS
-        if (heroTilt) {
-          const { tiltX, tiltY } = getTilt(hero, e, 16);
-          heroTilt.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-        }
-
-        // Hero text depth — only after entrance animation completes
-        if (heroText) {
-          const { dx, dy } = getDepth(hero, e, 10);
-          const current = heroText.style.transform || '';
-          if (!current.includes('rotate') && !current.includes('scale')) {
-            heroText.style.transform = `translate(${-dx}px, ${-dy}px)`;
-          } else {
-            heroText.style.transform = `translate(${-dx}px, ${-dy}px)`;
-          }
-        }
-
-        if (heroP) {
-          const { dx, dy } = getDepth(hero, e, 5);
-          heroP.style.transform = `translate(${-dx * 0.7}px, ${-dy * 0.7}px)`;
-        }
-
-        if (heroButtons) {
-          const { dx, dy } = getDepth(hero, e, 4);
-          heroButtons.style.transform = `translate(${-dx * 0.5}px, ${-dy * 0.5}px)`;
-        }
-      });
-
-      // Gallery card 3D tilt
-      function initCardTilt() {
-        document.querySelectorAll('.flower-card').forEach(card => {
-          const inner = document.createElement('div');
-          inner.className = 'card-inner tilt-3d';
-          const children = [...card.children];
-          children.forEach(child => inner.appendChild(child));
-          card.appendChild(inner);
-
-          card.addEventListener('mousemove', (e) => {
-            const { tiltX, tiltY } = getTilt(card, e, 10);
-            inner.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-          });
-
-          card.addEventListener('mouseleave', () => {
-            inner.style.transform = 'rotateX(0deg) rotateY(0deg)';
-          });
-        });
-      }
-      initCardTilt();
-    })();
 
     // ─── BUTTON RIPPLE ───
     document.querySelectorAll('.btn').forEach(btn => {
@@ -1555,81 +1909,26 @@
       });
     });
 
-    // ─── SCROLL REVEAL (Intersection Observer) ───
-    const observerOptions = {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
-    };
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    // Gallery cards
-    document.querySelectorAll('.flower-card').forEach((card) => {
-      const delay = parseInt(card.dataset.delay) || 0;
-      card.style.setProperty('--card-delay', delay + 'ms');
-      card.style.transitionDelay = delay + 'ms';
-      revealObserver.observe(card);
-    });
-
-    // Gallery header
-    const galleryHeader = document.getElementById('galleryHeader');
-    if (galleryHeader) revealObserver.observe(galleryHeader);
-
-    // Story elements
-    const storyContent = document.getElementById('storyContent');
-    const storyVisual = document.getElementById('storyVisual');
-    if (storyContent) revealObserver.observe(storyContent);
-    if (storyVisual) revealObserver.observe(storyVisual);
-
-    // ─── FORM HANDLING ───
-    const form = document.getElementById('contactForm');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = form.querySelector('.btn');
-        btn.classList.add('loading');
-        const originalContent = btn.innerHTML;
-        btn.innerHTML = `
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation: rotateSlow 0.8s linear infinite;">
-            <path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/>
-          </svg>
-          Sending...`;
-        btn.style.pointerEvents = 'none';
-        setTimeout(() => {
-          btn.innerHTML = 'Sent!';
-          btn.style.background = 'linear-gradient(135deg, var(--accent-mint), #4CAF50)';
-          btn.style.boxShadow = '0 4px 24px rgba(108, 212, 160, 0.3)';
-          setTimeout(() => {
-            btn.innerHTML = originalContent;
-            btn.style.background = '';
-            btn.style.boxShadow = '';
-            btn.classList.remove('loading');
-            btn.style.pointerEvents = '';
-            form.reset();
-          }, 2000);
-        }, 1200);
-      });
-    }
-
-    // ─── SMOOTH SCROLL FOR NAV ───
+    // ─── SMOOTH SCROLL ───
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         if (href === '#') return;
         e.preventDefault();
         const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+
+    // ─── GALLERY MODAL OVERLAY ───
+    document.getElementById('galleryModal').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('open');
+    });
+
+    // ─── INIT ───
+    updateCartUI();
+    renderProducts();
+    document.querySelectorAll('.products-header').forEach(el => revealObserver.observe(el));
   </script>
 </body>
 </html>

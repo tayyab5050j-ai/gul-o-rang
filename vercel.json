@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.js",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/admin.html", "dest": "/admin.html" },
+    { "src": "/product.html", "dest": "/product.html" },
+    { "src": "/orders.html", "dest": "/orders.html" },
+    { "src": "/", "dest": "/index.html" }
+  ],
+  "ignoreCommand": "echo 'Ignoring server and admin-app folders'"
+}

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Orders — gul-o-rang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8F2E9; --bg-alt: #FDF7F1; --card-bg: #FFFFFF;
+      --accent: #D4897A; --accent-dark: #BD7A6C; --accent-light: #EED0C8;
+      --accent-teal: #4A8B7A; --accent-gold: #D4A373; --accent-rose: #D4A0A0;
+      --text: #2C2420; --text-muted: #8B7D6B; --text-light: #B5A797;
+      --border: #E8DDD2; --shadow: rgba(180, 140, 110, 0.1);
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'DM Sans', -apple-system, sans-serif;
+      --radius: 16px; --radius-sm: 8px;
+      --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--font-body);background:var(--bg);color:var(--text);
+      line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased
+    }
+    body::before{
+      content:'';position:fixed;inset:0;
+      background-image:radial-gradient(rgba(180,150,120,0.06) 1px,transparent 1px);
+      background-size:24px 24px;pointer-events:none;z-index:-1
+    }
+    ::selection{background:var(--accent);color:#fff}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1000px;margin:0 auto;padding:0 20px}
+
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 28px;
+      display:flex;justify-content:space-between;align-items:center;
+      transition:background var(--transition),padding var(--transition),box-shadow var(--transition)
+    }
+    nav.scrolled{background:rgba(252,245,235,0.93);backdrop-filter:blur(16px);padding:12px 28px;box-shadow:0 1px 0 var(--border)}
+    .logo{font-family:var(--font-display);font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;color:var(--text)}
+    .logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+    .nav-links a{font-size:0.85rem;font-weight:500;position:relative;padding-bottom:4px;color:var(--text-muted);transition:color var(--transition)}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--accent);transition:width var(--transition)}
+    .nav-links a:hover{color:var(--text)}
+    .nav-links a:hover::after{width:100%}
+    .nav-links a.active{color:var(--accent)}
+    .nav-links a.active::after{width:100%}
+    .cart-btn{position:relative;background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--text-muted);padding:4px;transition:color var(--transition)}
+    .cart-btn:hover{color:var(--accent)}
+    .cart-count{position:absolute;top:-6px;right:-8px;background:var(--accent);color:#fff;font-size:0.65rem;font-weight:600;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:100px;font-family:var(--font-body);font-size:0.9rem;font-weight:500;border:none;cursor:pointer;position:relative;overflow:hidden;transition:transform var(--transition),box-shadow var(--transition)}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 20px rgba(212,137,122,0.3)}
+    .btn-primary:hover{box-shadow:0 8px 28px rgba(212,137,122,0.4)}
+    .btn-secondary{background:transparent;color:var(--text);border:1px solid var(--border)}
+    .btn-secondary:hover{border-color:var(--accent)}
+    .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.35);transform:scale(0);animation:rippleAnim .6s ease-out;pointer-events:none}
+    @keyframes rippleAnim{to{transform:scale(4);opacity:0}}
+    .form-group{margin-bottom:18px}
+    .form-group label{display:block;font-size:0.8rem;font-weight:500;color:var(--text-muted);margin-bottom:6px;transition:color var(--transition)}
+    .form-group:focus-within label{color:var(--accent)}
+    .form-group input,.form-group textarea{width:100%;padding:12px 16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.9rem;transition:border-color var(--transition),box-shadow var(--transition);outline:none}
+    .form-group input:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(212,137,122,0.12)}
+
+    .section-title{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;letter-spacing:-0.02em;line-height:1.15;margin-bottom:14px}
+
+    /* ─── ORDERS PAGE ─── */
+    #orders-page{padding:120px 20px 80px;min-height:100vh}
+    .orders-header{text-align:center;margin-bottom:40px}
+    .orders-header .section-title{margin-bottom:8px}
+    .orders-header p{color:var(--text-muted);max-width:460px;margin:0 auto}
+
+    .orders-search{max-width:480px;margin:0 auto 40px}
+    .orders-search .form-group{display:flex;gap:10px}
+    .orders-search .form-group input{flex:1}
+    .orders-search .form-group .btn{flex-shrink:0}
+    .orders-search .form-group input.error{border-color:var(--accent-rose);box-shadow:0 0 0 3px rgba(212,160,160,0.15)}
+
+    .orders-result{}
+    .orders-empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
+    .orders-empty svg{margin-bottom:16px;opacity:0.4}
+    .orders-empty h3{font-family:var(--font-display);font-size:1.2rem;color:var(--text);margin-bottom:4px}
+
+    .order-card{
+      background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+      padding:20px 24px;margin-bottom:16px;cursor:pointer;
+      transition:transform var(--transition),box-shadow var(--transition)
+    }
+    .order-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--shadow)}
+    .order-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px}
+    .order-id{font-family:var(--font-display);font-weight:600;font-size:1rem}
+    .order-date{font-size:0.8rem;color:var(--text-muted)}
+    .order-status{font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:100px;text-transform:uppercase;letter-spacing:0.04em}
+    .order-status.pending{background:#FFF3E0;color:#E6A020}
+    .order-status.processing{background:#E3F2FD;color:#1A73E8}
+    .order-status.shipped{background:#E8F5E9;color:#2E7D32}
+    .order-status.delivered{background:#E8F5E9;color:#1B5E20}
+    .order-status.cancelled{background:#FBE9E7;color:#C62828}
+    .order-card-body{display:flex;justify-content:space-between;color:var(--text-muted);font-size:0.85rem}
+    .order-items-preview{display:flex;gap:4px;flex-wrap:wrap}
+    .order-items-preview span{color:var(--text-muted)}
+
+    /* ─── MODAL ─── */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:170;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;display:flex;align-items:center;justify-content:center;padding:20px}
+    .modal-overlay.open{opacity:1;visibility:visible}
+    .modal{background:var(--card-bg);border-radius:var(--radius);padding:36px;max-width:520px;width:100%;transform:scale(0.92) translateY(20px);transition:transform .4s cubic-bezier(0.22,1,0.36,1);max-height:90vh;overflow-y:auto}
+    .modal-overlay.open .modal{transform:scale(1) translateY(0)}
+    .modal h2{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:4px}
+    .order-detail-info{font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;line-height:1.8}
+    .order-detail-info strong{color:var(--text)}
+    .order-detail-items{margin:12px 0;padding:12px;background:var(--bg);border-radius:var(--radius-sm)}
+    .od-line{display:flex;justify-content:space-between;padding:6px 0;font-size:0.85rem;color:var(--text-muted)}
+    .od-line:last-child{border-top:1px solid var(--border);margin-top:6px;padding-top:10px;font-weight:600;color:var(--text)}
+    .od-line:last-child span:last-child{color:var(--accent)}
+
+    /* ─── TOAST ─── */
+    .toast-container{position:fixed;bottom:24px;right:24px;z-index:200;display:flex;flex-direction:column;gap:10px}
+    .toast{background:var(--text);color:var(--card-bg);padding:12px 20px;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,0.12);animation:toastIn .4s cubic-bezier(0.22,1,0.36,1)}
+    @keyframes toastIn{0%{opacity:0;transform:translateY(20px) scale(0.95)}100%{opacity:1;transform:translateY(0) scale(1)}}
+
+    footer{padding:36px 20px;text-align:center;color:var(--text-muted);font-size:0.82rem;border-top:1px solid var(--border)}
+    footer span{color:var(--accent-rose)}
+
+    @media(max-width:500px){
+      nav{padding:14px 16px}.logo{font-size:1.3rem}.modal{padding:24px 20px}
+      .orders-search .form-group{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="logo">gul-o-<span>rang</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#products" class="nav-hide">Flowers</a></li>
+      <li><a href="orders.html" class="active">Orders</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── ORDERS ─── -->
+  <section id="orders-page">
+    <div class="container">
+      <div class="orders-header">
+        <h1 class="section-title">Track Your Order</h1>
+        <p>Enter the email you used when placing your order to see its status.</p>
+      </div>
+
+      <div class="orders-search">
+        <div class="form-group">
+          <input type="email" id="orderEmail" placeholder="your@email.com">
+          <button class="btn btn-primary" onclick="lookupOrders()">Search</button>
+        </div>
+      </div>
+
+      <div class="orders-result" id="ordersResult">
+        <div class="orders-empty">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <h3>No orders yet</h3>
+          <p>Enter your email above to find your orders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Handcrafted with care — gul-o-<span>rang</span> &copy; 2026</footer>
+
+  <!-- ─── ORDER DETAIL MODAL ─── -->
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal">
+      <h2>Order Details</h2>
+      <div class="order-detail-info" id="orderDetailInfo"></div>
+      <div class="order-detail-items" id="orderDetailItems"></div>
+      <button class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:16px" onclick="document.getElementById('orderModal').classList.remove('open')">Close</button>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script>
+    let orders = [];
+    try { orders = JSON.parse(localStorage.getItem('gor_orders')) || []; } catch(e) { orders = []; }
+
+    function lookupOrders() {
+      const email = document.getElementById('orderEmail').value.trim().toLowerCase();
+      const result = document.getElementById('ordersResult');
+      const input = document.getElementById('orderEmail');
+
+      if (!email || !email.includes('@')) {
+        input.classList.add('error');
+        setTimeout(() => input.classList.remove('error'), 2000);
+        showToast('Please enter a valid email address');
+        return;
+      }
+
+      const found = orders.filter(o => o.customer && o.customer.email.toLowerCase() === email);
+
+      if (!found.length) {
+        result.innerHTML = `
+          <div class="orders-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <h3>No orders found</h3>
+            <p>We couldn't find any orders with the email <strong>${email}</strong>.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const sorted = [...found].reverse();
+      result.innerHTML = sorted.map(o => {
+        const itemsPreview = (o.items || []).map(i => i.name).join(', ');
+        const itemCount = (o.items || []).reduce((s, i) => s + i.qty, 0);
+        return `
+          <div class="order-card" onclick="viewOrder(${o.id})">
+            <div class="order-card-header">
+              <span class="order-id">#${o.id.toString().slice(-6)}</span>
+              <span class="order-status ${o.status}">${o.status}</span>
+            </div>
+            <div class="order-card-body">
+              <span class="order-items-preview">${itemCount} item(s) &middot; ${itemsPreview}</span>
+              <span class="order-date">${new Date(o.date).toLocaleDateString()}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function viewOrder(id) {
+      const o = orders.find(order => order.id === id);
+      if (!o) return;
+      const itemsHtml = (o.items || []).map(i =>
+        `<div class="od-line"><span>${i.name} x${i.qty}</span><span>PKR ${(i.price * i.qty).toLocaleString()}</span></div>`
+      ).join('');
+      const cust = o.customer || {};
+      const total = o.total || (o.items || []).reduce((s, i) => s + i.price * i.qty, 0);
+      document.getElementById('orderDetailInfo').innerHTML = `
+        <strong>Order:</strong> #${o.id.toString().slice(-6)}<br>
+        <strong>Status:</strong> <span class="order-status ${o.status}" style="display:inline-block;margin-top:4px">${o.status}</span><br><br>
+        <strong>Customer:</strong> ${cust.name || 'N/A'}<br>
+        <strong>Email:</strong> ${cust.email || 'N/A'}<br>
+        <strong>Phone:</strong> ${cust.phone || 'N/A'}<br>
+        <strong>Address:</strong> ${cust.address || 'N/A'}<br>
+        <strong>Placed:</strong> ${new Date(o.date).toLocaleString()}
+      `;
+      document.getElementById('orderDetailItems').innerHTML = itemsHtml +
+        `<div class="od-line"><span>Total</span><span>PKR ${total.toLocaleString()}</span></div>`;
+      document.getElementById('orderModal').classList.add('open');
+    }
+
+    // ─── TOAST ───
+    function showToast(msg) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div'); toast.className = 'toast'; toast.textContent = msg;
+      container.appendChild(toast);
+      setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2500);
+    }
+
+    // ─── AUTO-SEARCH ───
+    document.getElementById('orderEmail').addEventListener('keydown', (e) => { if (e.key === 'Enter') lookupOrders(); });
+
+    // ─── NAV SCROLL ───
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 80), { passive: true });
+
+    // ─── MODAL OVERLAY CLOSE ───
+    document.getElementById('orderModal').addEventListener('click', (e) => { if (e.target === document.getElementById('orderModal')) document.getElementById('orderModal').classList.remove('open'); });
+
+    // ─── BUTTON RIPPLE ───
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const rect = this.getBoundingClientRect(); const ripple = document.createElement('span'); ripple.className = 'ripple';
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+        this.appendChild(ripple); ripple.addEventListener('animationend', () => ripple.remove());
+      });
+    });
+
+    // ─── AUTO-SEARCH FROM URL ───
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('email')) { document.getElementById('orderEmail').value = params.get('email'); lookupOrders(); }
+  </script>
+</body>
+</html>
