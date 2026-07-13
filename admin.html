@@ -135,6 +135,7 @@
       border-color: var(--red);
       color: var(--red);
     }
+    .hamburger { display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text);padding:4px;line-height:1; }
 
     .admin-body {
       display: flex;
@@ -377,7 +378,11 @@
     }
 
     @media (max-width: 700px) {
-      .admin-sidebar { display: none; }
+      .admin-sidebar { position:fixed;top:56px;left:-240px;bottom:0;width:220px;z-index:100;transition:left 0.25s;border-right:1px solid var(--border);border-radius:0;padding-top:12px; }
+      .admin-sidebar.open { left:0; }
+      .admin-sidebar-overlay { display:none;position:fixed;inset:0;z-index:99;background:rgba(0,0,0,0.3); }
+      .admin-sidebar-overlay.open { display:block; }
+      .hamburger { display:flex; }
       .admin-content { padding: 16px; }
       .admin-header { padding: 12px 16px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -402,11 +407,13 @@
   <!-- ─── ADMIN ─── -->
   <div id="adminApp">
     <div class="admin-header">
+      <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">&#9776;</button>
       <h2>gul-o-<span>rang</span> / Admin</h2>
       <button class="logout-btn" onclick="doLogout()">Sign Out</button>
     </div>
+    <div class="admin-sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="admin-body">
-      <div class="admin-sidebar">
+      <div class="admin-sidebar" id="adminSidebar">
         <button class="active" data-page="dashboard">Dashboard</button>
         <button data-page="products">Products</button>
         <button data-page="orders">Orders</button>
@@ -541,6 +548,11 @@
       document.getElementById('adminApp').style.display = 'none';
     }
 
+    function toggleSidebar() {
+      document.getElementById('adminSidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('open');
+    }
+
     // ─── SIDEBAR ───
     document.querySelectorAll('.admin-sidebar button').forEach(btn => {
       btn.addEventListener('click', function() {
@@ -548,6 +560,7 @@
         this.classList.add('active');
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.getElementById('page-' + this.dataset.page).classList.add('active');
+        if (window.innerWidth <= 700) toggleSidebar();
       });
     });
 
