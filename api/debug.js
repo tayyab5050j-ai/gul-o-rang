@@ -37,6 +37,7 @@ export default async function handler(req, res) {
   } catch (e) {
     results.writeOk = false;
     results.writeError = e.message;
+    results.writeStack = e.stack;
   }
 
   return res.json(results);
